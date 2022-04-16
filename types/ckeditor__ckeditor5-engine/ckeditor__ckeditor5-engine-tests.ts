@@ -1,4 +1,8 @@
 import {
+    addBackgroundRules,
+    addBorderRules,
+    addMarginRules,
+    addPaddingRules,
     ClickObserver,
     Conversion,
     DataController,
@@ -9,9 +13,21 @@ import {
     EditingController,
     Element,
     enablePlaceholder,
+    getBoxSidesShorthandValue,
+    getBoxSidesValueReducer,
+    getPositionShorthandNormalizer,
+    getShorthandValues,
     hidePlaceholder,
     HtmlDataProcessor,
     InsertOperation,
+    isAttachment,
+    isColor,
+    isLength,
+    isLineStyle,
+    isPercentage,
+    isPosition,
+    isRepeat,
+    isURL,
     LivePosition,
     LiveRange,
     MarkerOperation,
@@ -46,9 +62,12 @@ import UpcastHelpers, {
 import Batch from '@ckeditor/ckeditor5-engine/src/model/batch';
 import ModelDocument from '@ckeditor/ckeditor5-engine/src/model/document';
 import DocumentFragment from '@ckeditor/ckeditor5-engine/src/model/documentfragment';
+import History from '@ckeditor/ckeditor5-engine/src/model/history';
 import { Item } from '@ckeditor/ckeditor5-engine/src/model/item';
 import MarkerCollection, { Marker } from '@ckeditor/ckeditor5-engine/src/model/markercollection';
 import Node from '@ckeditor/ckeditor5-engine/src/model/node';
+import AttributeOperation from '@ckeditor/ckeditor5-engine/src/model/operation/attributeoperation';
+import DetachOperation from '@ckeditor/ckeditor5-engine/src/model/operation/detachoperation';
 import Operation from '@ckeditor/ckeditor5-engine/src/model/operation/operation';
 import ModelPosition from '@ckeditor/ckeditor5-engine/src/model/position';
 import RootElement from '@ckeditor/ckeditor5-engine/src/model/rootelement';
@@ -79,8 +98,17 @@ import EmptyElement from '@ckeditor/ckeditor5-engine/src/view/emptyelement';
 import { getDataWithoutFiller, isInlineFiller, startsWithFiller } from '@ckeditor/ckeditor5-engine/src/view/filler';
 import Matcher, { MatcherPattern } from '@ckeditor/ckeditor5-engine/src/view/matcher';
 import ViewNode from '@ckeditor/ckeditor5-engine/src/view/node';
-import ArrowKeyObserver from '@ckeditor/ckeditor5-engine/src/view/observer/arrowkeysobserver';
+import ArrowKeysObserver from '@ckeditor/ckeditor5-engine/src/view/observer/arrowkeysobserver';
 import BubblingEventInfo from '@ckeditor/ckeditor5-engine/src/view/observer/bubblingeventinfo';
+import DomEventData from '@ckeditor/ckeditor5-engine/src/view/observer/domeventdata';
+import DomEventObserver from '@ckeditor/ckeditor5-engine/src/view/observer/domeventobserver';
+import FakeSelectionObserver from '@ckeditor/ckeditor5-engine/src/view/observer/fakeselectionobserver';
+import FocusObserver from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
+import InputObserver from '@ckeditor/ckeditor5-engine/src/view/observer/inputobserver';
+import KeyObserver from '@ckeditor/ckeditor5-engine/src/view/observer/keyobserver';
+import MouseObserver from '@ckeditor/ckeditor5-engine/src/view/observer/mouseobserver';
+import MutationObserver from '@ckeditor/ckeditor5-engine/src/view/observer/mutationobserver';
+import SelectionObserver from '@ckeditor/ckeditor5-engine/src/view/observer/selectionobserver';
 import Position from '@ckeditor/ckeditor5-engine/src/view/position';
 import ViewRange from '@ckeditor/ckeditor5-engine/src/view/range';
 import RawElement from '@ckeditor/ckeditor5-engine/src/view/rawelement';
@@ -91,7 +119,6 @@ import ViewTextProxy from '@ckeditor/ckeditor5-engine/src/view/textproxy';
 import UIElement from '@ckeditor/ckeditor5-engine/src/view/uielement';
 import View from '@ckeditor/ckeditor5-engine/src/view/view';
 import { EmitterMixin } from '@ckeditor/ckeditor5-utils';
-import History from '@ckeditor/ckeditor5-engine/src/model/history';
 
 let str = '';
 const stylesProcessor = new StylesProcessor();
@@ -175,7 +202,9 @@ viewDefinition = {
     },
 };
 
-let model: Model = new Model();
+let model = new Model();
+const root = model.document.createRoot();
+let range = model.createRange(model.createPositionAt(root, 0), model.createPositionAt(root, 0));
 model.change(writer => {
     writer.insertText('foo', model.document.selection.getFirstPosition());
 });
@@ -202,7 +231,6 @@ viewElement.shouldRenderUnsafeAttribute('');
 let viewDocument = new ViewDocument(stylesProcessor);
 // $ExpectType boolean
 viewDocument.isSelecting;
-// $ExpectError
 viewDocument.isSelecting = true;
 let bool: boolean = viewDocument.isReadOnly;
 num = viewDocument.roots.length;
@@ -315,7 +343,7 @@ downcastHelper = downcastHelper.add(dispatcher => {
         evt.name; // $ExpectType "insert:paragraph"
         data; // $ExpectType { item: Element & { name: "paragraph"; }; range: Range; }
         schema; // $ExpectType Schema
-        writer; // $ExpectType DowncastWriter
+        writer; // $ExpectType DowncastWriter<Document>
         dispatcher; // $ExpectType DowncastDispatcher<{}>
         mapper; // $ExpectType Mapper
         consumable; // ExpectType ModelConsumable
@@ -342,7 +370,7 @@ downcastHelper = downcastHelper.add(dispatcher => {
     dispatcher.on('insert:$text', insertText());
     dispatcher.on('insert', (evt, data, conversionApi) => {
         evt.name; // $ExpectType "insert"
-        data; // $ExpectType { item: TextProxy | Element; range: Range; }
+        data; // $ExpectType { item: TextProxy | Element; range: Range; } || { item: Element | TextProxy; range: Range; }
         conversionApi; // $ExpectType DowncastConversionApi<{}>
     });
     dispatcher.on('attribute:bold', (evt, data, conversionApi) => {
@@ -476,6 +504,7 @@ let insertOperation = new InsertOperation(
 );
 if (insertOperation.type === 'insert') {
 }
+
 // $ExpectType PositionStickiness
 insertOperation.position.stickiness;
 model.applyOperation(insertOperation);
@@ -484,15 +513,29 @@ insertOperation.nodes.getNode(9);
 insertOperation.shouldReceiveAttributes = true;
 insertOperation.toJSON().baseVersion;
 insertOperation.toJSON().baseVersion;
-InsertOperation.fromJSON(insertOperation.toJSON());
+InsertOperation.fromJSON(insertOperation.toJSON(), new ModelDocument());
 
-const root = model.document.createRoot();
-let range = model.createRange(model.createPositionAt(root, 0), model.createPositionAt(root, 0));
+// $ExpectType "detach"
+new DetachOperation(new ModelPosition(model.document.createRoot(), [0]), 0).type;
+// $ExpectType number
+new DetachOperation(new ModelPosition(model.document.createRoot(), [0]), 0).toJSON().howMany;
+
 let markerOperation = new MarkerOperation('name', nullvalue, range, model.markers, true, 0);
 if (markerOperation.type === 'marker') {
 }
 model.applyOperation(markerOperation);
 markerOperation = markerOperation.getReversed();
+
+let attributeOperation = new AttributeOperation(range, '', true, false, 1);
+attributeOperation = attributeOperation.clone();
+attributeOperation = attributeOperation.getReversed();
+// $ExpectType true
+attributeOperation.oldValue;
+const attributeOperation2 = new AttributeOperation(range, '', true, undefined, 1);
+// $ExpectType null
+attributeOperation2.newValue;
+// $ExpectType null
+attributeOperation2.toJSON().newValue;
 
 let operation: Operation;
 
@@ -645,8 +688,10 @@ if ('data' in node) {
     str = node.data;
 }
 bool = element.is('foo', 'bar');
-const result5: Array<[string, string | number | boolean]> = Array.from(element.getAttributes());
-const result6: Node[] = Array.from(element.getChildren());
+// $ExpectType [string, string | number | boolean][]
+Array.from(element.getAttributes());
+// $ExpectType (Element | Text)[]
+Array.from(element.getChildren());
 node = element.getNodeByPath([num]);
 node = element.findAncestor('p')!;
 num = element.getChildIndex(node);
@@ -693,8 +738,6 @@ const clickObserver = new ClickObserver(view);
 view.addObserver(ClickObserver);
 clickObserver.domEventType === 'click';
 clickObserver.onDomEvent(new MouseEvent('foo'));
-
-new Mapper().on('foo', () => {});
 
 const downcastWriter = new DowncastWriter(new Document(new StylesProcessor()));
 downcastWriter.createPositionAt(downcastWriter.createEmptyElement('div'), 'after');
@@ -805,11 +848,11 @@ if (
 {
     const obj = modelObj as Element;
     if (obj.is('element', 'paragraph')) {
-        // $ExpectType (RootElement | Element) & { name: "paragraph"; }
+        // $ExpectType (RootElement | Element) & { name: "paragraph"; } || (Element | RootElement) & { name: "paragraph"; }
         obj;
     }
     if (obj.is('model:element', 'paragraph')) {
-        // $ExpectType (RootElement | Element) & { name: "paragraph"; }
+        // $ExpectType (RootElement | Element) & { name: "paragraph"; } || (Element | RootElement) & { name: "paragraph"; }
         obj;
     }
     if (obj.is('element', 'paragraph') || obj.is('element', 'blockQuote')) {
@@ -917,11 +960,11 @@ if (
 {
     const obj = viewObj as ViewElement;
     if (obj.is('element', 'p') || obj.is('element', 'div')) {
-        // $ExpectType (EmptyElement & { name: "p"; }) | (EmptyElement & { name: "div"; })
+        // $ExpectType (Element & { name: "div"; }) | (Element & { name: "p"; }) || (EmptyElement & { name: "p"; }) | (EmptyElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:element', 'p') || obj.is('view:element', 'div')) {
-        // $ExpectType (EmptyElement & { name: "p"; }) | (EmptyElement & { name: "div"; })
+        // $ExpectType (Element & { name: "div"; }) | (Element & { name: "p"; }) || (EmptyElement & { name: "p"; }) | (EmptyElement & { name: "div"; })
         obj;
     }
     if (obj.is('element', 'p')) {
@@ -950,11 +993,11 @@ if (
 {
     const obj = viewObj as ContainerElement;
     if (obj.is('containerElement', 'p') || obj.is('containerElement', 'div')) {
-        // $ExpectType (ContainerElement & { name: "p"; }) | (ContainerElement & { name: "div"; })
+        // $ExpectType (ContainerElement & { name: "div"; }) | (ContainerElement & { name: "p"; }) || (ContainerElement & { name: "p"; }) | (ContainerElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:containerElement', 'p') || obj.is('view:containerElement', 'div')) {
-        // $ExpectType (ContainerElement & { name: "p"; }) | (ContainerElement & { name: "div"; })
+        // $ExpectType (ContainerElement & { name: "div"; }) | (ContainerElement & { name: "p"; }) || (ContainerElement & { name: "p"; }) | (ContainerElement & { name: "div"; })
         obj;
     }
     if (obj.is('containerElement', 'p')) {
@@ -982,11 +1025,11 @@ if (
 {
     const obj = viewObj as EditableElement;
     if (obj.is('editableElement', 'p') || obj.is('editableElement', 'div')) {
-        // $ExpectType (EditableElement & { name: "p"; }) | (EditableElement & { name: "div"; })
+        // $ExpectType (EditableElement & { name: "div"; }) | (EditableElement & { name: "p"; }) || (EditableElement & { name: "p"; }) | (EditableElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:editableElement', 'p') || obj.is('view:editableElement', 'div')) {
-        // $ExpectType (EditableElement & { name: "p"; }) | (EditableElement & { name: "div"; })
+        // $ExpectType (EditableElement & { name: "div"; }) | (EditableElement & { name: "p"; }) || (EditableElement & { name: "p"; }) | (EditableElement & { name: "div"; })
         obj;
     }
     if (obj.is('editableElement', 'p')) {
@@ -1014,11 +1057,11 @@ if (
 {
     const obj = viewObj as RootEditableElement;
     if (obj.is('rootEditableElement', 'p') || obj.is('rootEditableElement', 'div')) {
-        // $ExpectType (RootEditableElement & { name: "p"; }) | (RootEditableElement & { name: "div"; })
+        // $ExpectType (RootEditableElement & { name: "div"; }) | (RootEditableElement & { name: "p"; }) || (RootEditableElement & { name: "p"; }) | (RootEditableElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:rootEditableElement', 'p') || obj.is('view:rootEditableElement', 'div')) {
-        // $ExpectType (RootEditableElement & { name: "p"; }) | (RootEditableElement & { name: "div"; })
+        // $ExpectType (RootEditableElement & { name: "div"; }) | (RootEditableElement & { name: "p"; }) || (RootEditableElement & { name: "p"; }) | (RootEditableElement & { name: "div"; })
         obj;
     }
     if (obj.is('rootEditableElement', 'p')) {
@@ -1045,11 +1088,11 @@ if (
 {
     const obj = viewObj as RawElement;
     if (obj.is('rawElement', 'p') || obj.is('rawElement', 'div')) {
-        // $ExpectType (RawElement & { name: "p"; }) | (RawElement & { name: "div"; })
+        // $ExpectType (RawElement & { name: "div"; }) | (RawElement & { name: "p"; }) || (RawElement & { name: "p"; }) | (RawElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:rawElement', 'p') || obj.is('view:rawElement', 'div')) {
-        // $ExpectType (RawElement & { name: "p"; }) | (RawElement & { name: "div"; })
+        // $ExpectType (RawElement & { name: "div"; }) | (RawElement & { name: "p"; }) || (RawElement & { name: "p"; }) | (RawElement & { name: "div"; })
         obj;
     }
     if (obj.is('rawElement', 'p')) {
@@ -1077,11 +1120,11 @@ if (
 {
     const obj = viewObj as AttributeElement;
     if (obj.is('attributeElement', 'p') || obj.is('attributeElement', 'div')) {
-        // $ExpectType (AttributeElement & { name: "p"; }) | (AttributeElement & { name: "div"; })
+        // $ExpectType (AttributeElement & { name: "div"; }) | (AttributeElement & { name: "p"; }) || (AttributeElement & { name: "p"; }) | (AttributeElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:attributeElement', 'p') || obj.is('view:attributeElement', 'div')) {
-        // $ExpectType (AttributeElement & { name: "p"; }) | (AttributeElement & { name: "div"; })
+        // $ExpectType (AttributeElement & { name: "div"; }) | (AttributeElement & { name: "p"; }) || (AttributeElement & { name: "p"; }) | (AttributeElement & { name: "div"; })
         obj;
     }
     if (obj.is('attributeElement', 'p')) {
@@ -1109,11 +1152,11 @@ if (
 {
     const obj = viewObj as UIElement;
     if (obj.is('uiElement', 'p') || obj.is('uiElement', 'div')) {
-        // $ExpectType (UIElement & { name: "p"; }) | (UIElement & { name: "div"; })
+        // $ExpectType (UIElement & { name: "div"; }) | (UIElement & { name: "p"; }) || (UIElement & { name: "p"; }) | (UIElement & { name: "div"; })
         obj;
     }
     if (obj.is('view:uiElement', 'p') || obj.is('view:uiElement', 'div')) {
-        // $ExpectType (UIElement & { name: "p"; }) | (UIElement & { name: "div"; })
+        // $ExpectType (UIElement & { name: "div"; }) | (UIElement & { name: "p"; }) || (UIElement & { name: "p"; }) | (UIElement & { name: "div"; })
         obj;
     }
     if (obj.is('uiElement', 'p')) {
@@ -1336,13 +1379,13 @@ downcastWriter.createRawElement();
 // prettier-ignore
 downcastWriter.createRawElement('div').render = function(domElement: HTMLElement, domConverter: DomConverter) {
     domConverter.setContentOf(domElement, '<b>This is the raw content of myRawElement.</b>');
-    // $ExpectType DowncastWriter
+    // $ExpectType DowncastWriter<Document>
     this;
 };
 // prettier-ignore
 downcastWriter.createRawElement('div', { id: 'foo' }, function(domElement, domConverter) {
     domConverter.setContentOf(domElement, '<b>This is the raw content of myRawElement.</b>');
-    // $ExpectType DowncastWriter
+    // $ExpectType DowncastWriter<Document>
     this;
 });
 
@@ -1359,6 +1402,7 @@ class MyOperation extends Operation {
     toJSON() {
         return { __className: '', baseVersion: 0 };
     }
+    type: 'foo';
 }
 new Batch().addOperation(new MyOperation(1));
 
@@ -1455,9 +1499,193 @@ new BubblingEventInfo(viewDocument, '', new ViewRange(viewPosition));
 new BubblingEventInfo(viewDocument, '', new ViewRange(viewPosition)).startRange;
 // $ExpectType "none" | "capturing" | "atTarget" | "bubbling"
 new BubblingEventInfo(viewDocument, '', new ViewRange(viewPosition)).eventPhase;
-// $ExpectType Document | Node
+// $ExpectType Document | Node | null
 new BubblingEventInfo(viewDocument, '', new ViewRange(viewPosition)).currentTarget;
 
-new ArrowKeyObserver(view).observe();
-
 viewDocument.isFocused = true;
+
+new Mapper().on('foo', () => {});
+// $ExpectType void
+new Mapper().bindElements(new Element('div'), new ViewElement(viewDocument, 'div'));
+// $ExpectType void
+new Mapper().unbindViewElement(new ViewElement(viewDocument, 'div'));
+// $ExpectType void
+new Mapper().unbindModelElement(new Element('div'));
+// $ExpectType void
+new Mapper().bindElementToMarker(new ViewElement(viewDocument, 'div'), 'div');
+// $ExpectType void
+new Mapper().unbindElementFromMarkerName(new ViewElement(viewDocument, 'div'), 'div');
+// $ExpectType string[]
+new Mapper().flushUnboundMarkerNames();
+// $ExpectType number
+new Mapper().getModelLength(new ViewElement(viewDocument, 'div'));
+// $ExpectType void
+new Mapper().clearBindings();
+// $ExpectType Element | undefined
+new Mapper().toModelElement(new ViewElement(viewDocument, 'div'));
+// $ExpectType Element
+new Mapper().toViewElement(new Element('div'));
+// $ExpectType Range
+new Mapper().toModelRange(new ViewRange(new Position(new ViewElement(viewDocument, 'div'), 5)));
+// $ExpectType Range
+new Mapper().toViewRange(new Range(position));
+// $ExpectType Position
+new Mapper().toModelPosition(new Position(new ViewElement(viewDocument, 'div'), 5));
+// $ExpectType Position
+new Mapper().toViewPosition(new Mapper().toModelPosition(new Position(new ViewElement(viewDocument, 'div'), 5)));
+// $ExpectType Set<Element> | null
+new Mapper().markerNameToElements('');
+// $ExpectType void
+new Mapper().registerViewToModelLength('', (el: ViewElement) => el.childCount);
+// $ExpectType Element
+new Mapper().findMappedViewAncestor(
+    new Mapper().toViewPosition(new Mapper().toModelPosition(new Position(new ViewElement(viewDocument, 'div'), 5))),
+);
+// $ExpectType Position
+new Mapper().findPositionIn(viewElement, 5);
+
+new DomEventData(view, new DragEvent('dragstart'));
+new DomEventData(view, new DragEvent('dragstart'), { dataTransfer: new DataTransfer() });
+
+// $ExpectType MutationObserver
+view.getObserver(MutationObserver);
+new MutationObserver(view).flush();
+
+// $ExpectType ArrowKeysObserver
+view.getObserver(ArrowKeysObserver);
+new ArrowKeysObserver(view).observe();
+
+// $ExpectType FakeSelectionObserver
+view.getObserver(FakeSelectionObserver);
+new FakeSelectionObserver(view).destroy();
+
+// $ExpectType SelectionObserver
+view.getObserver(SelectionObserver);
+new SelectionObserver(view).destroy();
+new SelectionObserver(view).observe(document.body);
+
+// $ExpectType MouseObserver
+view.getObserver(MouseObserver);
+new MouseObserver(view).destroy();
+new MouseObserver(view).observe(document.body);
+new MouseObserver(view).onDomEvent(new MouseEvent(''));
+// $ExpectError
+new MouseObserver(view).onDomEvent(new KeyboardEvent(''));
+
+// $ExpectType FocusObserver
+view.getObserver(FocusObserver);
+new FocusObserver(view).destroy();
+new FocusObserver(view).observe(document.body);
+new FocusObserver(view).onDomEvent(new FocusEvent(''));
+// $ExpectError
+new FocusObserver(view).onDomEvent(new KeyboardEvent(''));
+
+// $ExpectType KeyObserver
+view.getObserver(KeyObserver);
+new KeyObserver(view).destroy();
+new KeyObserver(view).observe(document.body);
+new KeyObserver(view).onDomEvent(new KeyboardEvent(''));
+// $ExpectError
+new KeyObserver(view).onDomEvent(new FocusEvent(''));
+
+// $ExpectType ClickObserver
+view.getObserver(ClickObserver);
+new ClickObserver(view).destroy();
+new ClickObserver(view).observe(document.body);
+new ClickObserver(view).onDomEvent(new MouseEvent(''));
+// $ExpectError
+new ClickObserver(view).onDomEvent(new FocusEvent(''));
+
+// $ExpectType InputObserver
+view.getObserver(InputObserver);
+new InputObserver(view).destroy();
+new InputObserver(view).observe(document.body);
+new InputObserver(view).onDomEvent(new InputEvent(''));
+// $ExpectError
+new InputObserver(view).onDomEvent(new FocusEvent(''));
+
+class MyClickObserver extends DomEventObserver {
+    readonly domEventType: 'click';
+
+    onDomEvent(domEvent: MouseEvent) {
+        this.fire('click', domEvent, { button: 1 });
+        // $ExpectError
+        this.fire('click', domEvent, { button: true });
+    }
+
+    expectError(domEvent: KeyboardEvent) {
+        // $ExpectError
+        this.fire('click', domEvent);
+    }
+}
+
+new DomEventData(view, new DragEvent(''));
+new DomEventData(view, new DragEvent(''), { dataTransfer: null });
+// $ExpectError
+new DomEventData(view, new KeyboardEvent(''), { button: 1 });
+
+// $ExpectType void
+addBackgroundRules(new StylesProcessor());
+// $ExpectType void
+addBorderRules(new StylesProcessor());
+// $ExpectType void
+addMarginRules(new StylesProcessor());
+// $ExpectType void
+addPaddingRules(new StylesProcessor());
+
+// $ExpectType boolean
+isColor('');
+// $ExpectType boolean
+isLineStyle('');
+// $ExpectType boolean
+isLength('');
+// $ExpectType boolean
+isPercentage('');
+// $ExpectType boolean
+isRepeat('');
+// $ExpectType boolean
+isPosition('');
+// $ExpectType boolean
+isAttachment('');
+// $ExpectType boolean
+isURL('');
+
+// $ExpectType void
+stylesProcessor.setReducer('padding', getBoxSidesValueReducer('padding'));
+stylesProcessor.setReducer('foo', getBoxSidesValueReducer('foo'));
+stylesProcessor.setReducer('margin', margin => {
+    return [['margin', `${margin.top} ${margin.right} ${margin.bottom} ${margin.left}`]];
+});
+
+// $ExpectType string
+getBoxSidesShorthandValue({ top: '', right: '', bottom: '', left: '' });
+
+// $ExpectType void
+stylesProcessor.setNormalizer('foo', value => ({
+    path: 'foo',
+    value: { top: value, right: value, bottom: value, left: value },
+}));
+stylesProcessor.setNormalizer('foo-top', value => ({
+    path: 'foo.top',
+    value,
+}));
+stylesProcessor.setNormalizer('margin', getPositionShorthandNormalizer('margin'));
+
+// $ExpectType string[]
+getShorthandValues('');
+
+const myUIElement = downcastWriter.createUIElement('span');
+myUIElement.render = function render(domDocument, domConverter) {
+    const domElement = this.toDomElement(domDocument);
+
+    domConverter.setContentOf(domElement, '<b>this is ui element</b>');
+
+    return domElement;
+};
+
+downcastWriter.createUIElement('span', null, function callback(domDocument) {
+    const domElement = this.toDomElement(domDocument);
+    domElement.innerHTML = '<b>this is ui element</b>';
+
+    return domElement;
+});
