@@ -42,6 +42,7 @@ const playerOptions: VideoJsPlayerOptions = {
     nativeControlsForTouch: true,
     notSupportedMessage: 'Oh no! :(',
     playbackRates: [0.5, 1],
+    noUITitleAttributes: true,
     plugins: {
         myPlugin: {
             myOption: true,
@@ -123,6 +124,7 @@ videojs('example_video_1', playerOptions).ready(function playerReady() {
     liveTracker.seekToLiveEdge();
     liveTracker.startTracking();
     liveTracker.stopTracking();
+    liveTracker.nextSeekedFromUser();
     const isTracking: boolean = liveTracker.isTracking();
 
     const whereYouAt: number = this.currentTime();
@@ -165,6 +167,12 @@ videojs('example_video_1', playerOptions).ready(function playerReady() {
         // $ExpectType PictureInPictureWindow
         pipWindow;
     });
+
+    // $ExpectType string | undefined
+    this.requestNamedAnimationFrame('animationFrameName', () => {});
+
+    // $ExpectType void
+    this.cancelNamedAnimationFrame('animationFrameName');
 
     // $ExpectType Promise<void>
     this.exitPictureInPicture();
@@ -232,7 +240,7 @@ function testComponents(player: videojs.Player) {
     myWindow.isDisposed(); // $ExpectType boolean
     myWindow.dispose(); // $ExpectType void
 
-	const MyOtherWindow = videojs.extend(videojs.getComponent("ModalDialog"), {
+    const MyOtherWindow = videojs.extend(videojs.getComponent('ModalDialog'), {
         myFunction() {
             this.player().play();
         },
@@ -243,11 +251,16 @@ function testComponents(player: videojs.Player) {
     });
 
     const myOtherWindow = new MyOtherWindow(player, {});
-    myOtherWindow.controlText("My text");
+    myOtherWindow.controlText('My text');
     myOtherWindow.open();
     myOtherWindow.close();
     myOtherWindow.myFunction(); // $ExpectType void
     myOtherWindow.myOtherFunction("test"); // $ExpectType string
+
+    const MyClickableComponent = videojs.extend(videojs.getComponent("clickablecomponent"));
+    const myClickable = new MyClickableComponent(player, {
+        clickHandler: () => {}
+    });
 }
 
 function testPlugin(player: videojs.Player, options: {}) {

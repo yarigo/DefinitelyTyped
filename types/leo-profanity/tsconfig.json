@@ -18,6 +18,6 @@
     },
     "files": [
         "index.d.ts",
-        "amqp-connection-manager-tests.ts"
+        "leo-profanity-tests.ts"
     ]
 }
