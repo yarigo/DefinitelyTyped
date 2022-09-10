@@ -4482,7 +4482,7 @@ declare namespace Xrm {
              * @param handler If an anonymous function is set using the addOnProcessStatusChange method it
              *                cannot be removed using this method.
              */
-            removeOnProcessStatusChange(handler: Events.ProcessStatusChangeHandler): void;
+            removeOnProcessStatusChange(handler: Events.ContextSensitiveHandler): void;
 
             /**
              * Use this to remove a function as an event handler for the OnStageChange event.
@@ -5861,7 +5861,8 @@ declare namespace Xrm {
                     | Navigation.PageInputEntityRecord
                     | Navigation.PageInputEntityList
                     | Navigation.CustomPage
-                    | Navigation.PageInputHtmlWebResource,
+                    | Navigation.PageInputHtmlWebResource
+                    | Navigation.Dashboard,
                 navigationOptions?: Navigation.NavigationOptions,
             ): Async.PromiseLike<any>;
         }
