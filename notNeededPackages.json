@@ -1205,6 +1205,10 @@
             "libraryName": "empty-trash",
             "asOfVersion": "3.0.0"
         },
+        "enhanced-resolve": {
+            "libraryName": "enhanced-resolve",
+            "asOfVersion": "5.0.0"
+        },
         "ensure-error": {
             "libraryName": "ensure-error",
             "asOfVersion": "2.0.0"
@@ -1252,6 +1256,10 @@
         "escape-string-regexp": {
             "libraryName": "escape-string-regexp",
             "asOfVersion": "2.0.0"
+        },
+        "eslint-visitor-keys": {
+            "libraryName": "eslint-visitor-keys",
+            "asOfVersion": "3.3.0"
         },
         "ethereumjs-tx": {
             "libraryName": "ethereumjs-tx",
@@ -1317,6 +1325,10 @@
             "libraryName": "express-handlebars",
             "asOfVersion": "6.0.0"
         },
+        "express-jwt": {
+            "libraryName": "express-jwt",
+            "asOfVersion": "7.4.2"
+        },
         "express-mongo-sanitize": {
             "libraryName": "express-mongo-sanitize",
             "asOfVersion": "2.1.0"
@@ -1336,6 +1348,10 @@
         "express-request-id": {
             "libraryName": "express-request-id",
             "asOfVersion": "3.0.0"
+        },
+        "express-unless": {
+            "libraryName": "express-unless",
+            "asOfVersion": "2.0.1"
         },
         "express-urlrewrite": {
             "libraryName": "express-urlrewrite",
@@ -1661,6 +1677,10 @@
             "libraryName": "github",
             "asOfVersion": "7.1.0"
         },
+        "github-slugger": {
+            "libraryName": "github-slugger",
+            "asOfVersion": "2.0.0"
+        },
         "github-username": {
             "libraryName": "github-username",
             "asOfVersion": "5.0.0"
@@ -1732,6 +1752,10 @@
         "gsap": {
             "libraryName": "gsap",
             "asOfVersion": "3.0.0"
+        },
+        "guardian__prosemirror-invisibles": {
+            "libraryName": "@guardian/prosemirror-invisibles",
+            "asOfVersion": "1.3.3"
         },
         "gulp-pug": {
             "libraryName": "gulp-pug",
@@ -2064,6 +2088,10 @@
         "ionic": {
             "libraryName": "ionic",
             "asOfVersion": "3.19.0"
+        },
+        "ioredis": {
+            "libraryName": "ioredis",
+            "asOfVersion": "5.0.0"
         },
         "ip-address": {
             "libraryName": "ip-address",
@@ -3333,6 +3361,10 @@
             "libraryName": "@orbit-ui/react-components",
             "asOfVersion": "18.1.2"
         },
+        "orderedmap": {
+            "libraryName": "orderedmap",
+            "asOfVersion": "2.0.0"
+        },
         "os-locale": {
             "libraryName": "os-locale",
             "asOfVersion": "4.0.0"
@@ -3508,6 +3540,10 @@
         "p-whilst": {
             "libraryName": "p-whilst",
             "asOfVersion": "2.0.0"
+        },
+        "package-info": {
+            "libraryName": "package-info",
+            "asOfVersion": "5.0.0"
         },
         "package-json": {
             "libraryName": "package-json",
@@ -3703,6 +3739,54 @@
             "libraryName": "png-img",
             "asOfVersion": "4.0.4"
         },
+        "pollyjs__adapter": {
+            "libraryName": "@pollyjs/adapter",
+            "asOfVersion": "6.0.4"
+        },
+        "pollyjs__adapter-fetch": {
+            "libraryName": "@pollyjs/adapter-fetch",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__adapter-node-http": {
+            "libraryName": "@pollyjs/adapter-node-http",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__adapter-puppeteer": {
+            "libraryName": "@pollyjs/adapter-puppeteer",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__adapter-xhr": {
+            "libraryName": "@pollyjs/adapter-xhr",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__core": {
+            "libraryName": "@pollyjs/core",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__node-server": {
+            "libraryName": "@pollyjs/node-server",
+            "asOfVersion": "6.0.1"
+        },
+        "pollyjs__persister": {
+            "libraryName": "@pollyjs/persister",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__persister-fs": {
+            "libraryName": "@pollyjs/persister-fs",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__persister-local-storage": {
+            "libraryName": "@pollyjs/persister-local-storage",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__persister-rest": {
+            "libraryName": "@pollyjs/persister-rest",
+            "asOfVersion": "6.0.5"
+        },
+        "pollyjs__utils": {
+            "libraryName": "@pollyjs/utils",
+            "asOfVersion": "6.0.1"
+        },
         "poly2tri": {
             "libraryName": "poly2tri",
             "asOfVersion": "1.4.0"
@@ -3763,9 +3847,77 @@
             "libraryName": "printf",
             "asOfVersion": "0.3.0"
         },
+        "prosemirror-changeset": {
+            "libraryName": "prosemirror-changeset",
+            "asOfVersion": "2.2.0"
+        },
+        "prosemirror-collab": {
+            "libraryName": "prosemirror-collab",
+            "asOfVersion": "1.3.0"
+        },
+        "prosemirror-commands": {
+            "libraryName": "prosemirror-commands",
+            "asOfVersion": "1.3.0"
+        },
+        "prosemirror-dropcursor": {
+            "libraryName": "prosemirror-dropcursor",
+            "asOfVersion": "1.5.0"
+        },
+        "prosemirror-gapcursor": {
+            "libraryName": "prosemirror-gapcursor",
+            "asOfVersion": "1.3.0"
+        },
+        "prosemirror-history": {
+            "libraryName": "prosemirror-history",
+            "asOfVersion": "1.3.0"
+        },
+        "prosemirror-inputrules": {
+            "libraryName": "prosemirror-inputrules",
+            "asOfVersion": "1.2.0"
+        },
+        "prosemirror-keymap": {
+            "libraryName": "prosemirror-keymap",
+            "asOfVersion": "1.2.0"
+        },
+        "prosemirror-markdown": {
+            "libraryName": "prosemirror-markdown",
+            "asOfVersion": "1.9.0"
+        },
+        "prosemirror-menu": {
+            "libraryName": "prosemirror-menu",
+            "asOfVersion": "1.2.0"
+        },
+        "prosemirror-model": {
+            "libraryName": "prosemirror-model",
+            "asOfVersion": "1.17.0"
+        },
+        "prosemirror-schema-basic": {
+            "libraryName": "prosemirror-schema-basic",
+            "asOfVersion": "1.2.0"
+        },
+        "prosemirror-schema-list": {
+            "libraryName": "prosemirror-schema-list",
+            "asOfVersion": "1.2.0"
+        },
+        "prosemirror-state": {
+            "libraryName": "prosemirror-state",
+            "asOfVersion": "1.4.0"
+        },
         "prosemirror-tables": {
             "libraryName": "prosemirror-tables",
             "asOfVersion": "0.9.1"
+        },
+        "prosemirror-test-builder": {
+            "libraryName": "prosemirror-test-builder",
+            "asOfVersion": "1.1.0"
+        },
+        "prosemirror-transform": {
+            "libraryName": "prosemirror-transform",
+            "asOfVersion": "1.5.0"
+        },
+        "prosemirror-view": {
+            "libraryName": "prosemirror-view",
+            "asOfVersion": "1.24.0"
         },
         "protobufjs": {
             "libraryName": "protobufjs",
@@ -3902,6 +4054,10 @@
         "raspi-soft-pwm": {
             "libraryName": "raspi-soft-pwm",
             "asOfVersion": "5.1.0"
+        },
+        "rate-limit-redis": {
+            "libraryName": "rate-limit-redis",
+            "asOfVersion": "3.0.0"
         },
         "raven-js": {
             "libraryName": "raven-js",
@@ -5158,6 +5314,10 @@
         "svg.js": {
             "libraryName": "svg.js",
             "asOfVersion": "2.3.1"
+        },
+        "svgo": {
+            "libraryName": "svgo",
+            "asOfVersion": "3.0.0"
         },
         "swagger-parser": {
             "libraryName": "swagger-parser",
