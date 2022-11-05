@@ -380,6 +380,10 @@
             "libraryName": "bitwise",
             "asOfVersion": "2.0.0"
         },
+        "bl": {
+            "libraryName": "bl",
+            "asOfVersion": "5.1.0"
+        },
         "blob-util": {
             "libraryName": "blob-util",
             "asOfVersion": "2.0.0"
@@ -3683,6 +3687,10 @@
             "libraryName": "pino",
             "asOfVersion": "7.0.0"
         },
+        "pino-std-serializers": {
+            "libraryName": "pino-std-serializers",
+            "asOfVersion": "4.0.0"
+        },
         "pixi-spine": {
             "libraryName": "pixi-spine",
             "asOfVersion": "1.4.2"
@@ -3946,6 +3954,14 @@
         "pupa": {
             "libraryName": "pupa",
             "asOfVersion": "2.0.0"
+        },
+        "puppeteer": {
+            "libraryName": "puppeteer",
+            "asOfVersion": "7.0.4"
+        },
+        "puppeteer-core": {
+            "libraryName": "puppeteer-core",
+            "asOfVersion": "7.0.4"
         },
         "pusher-js": {
             "libraryName": "pusher-js",
