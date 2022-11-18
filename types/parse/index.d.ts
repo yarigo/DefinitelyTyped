@@ -45,10 +45,10 @@ declare enum ErrorCode {
      */
     INVALID_QUERY = 102,
     /*
-    * Error code indicating a missing or invalid classname. Classnames are
-    * case-sensitive. They must start with a letter, and a-zA-Z0-9_ are the
-    * only valid characters.
-    */
+     * Error code indicating a missing or invalid classname. Classnames are
+     * case-sensitive. They must start with a letter, and a-zA-Z0-9_ are the
+     * only valid characters.
+     */
     INVALID_CLASS_NAME = 103,
     /** Error code indicating an unspecified object id. */
     MISSING_OBJECT_ID = 104,
@@ -1010,6 +1010,15 @@ declare global {
                     | undefined;
                 // Facet documentation: https://docs.mongodb.com/manual/reference/operator/aggregation/facet/
                 facet?: Record<string, Array<Record<string, any>>> | undefined;
+                // Unwind documentation: https://www.mongodb.com/docs/manual/reference/operator/aggregation/unwind/
+                unwind?:
+                    | {
+                          path: string;
+                          includeArrayIndex?: string;
+                          preserveNullAndEmptyArrays?: boolean;
+                      }
+                    | string
+                    | undefined;
             }
 
             // According to https://parseplatform.org/Parse-SDK-JS/api/2.1.0/Parse.Query.html#fullText
@@ -1109,6 +1118,24 @@ declare global {
              *
              */
             unsubscribe(): void;
+        }
+
+        /**
+         * The LiveQuery namespace is basically an EventEmitter
+         * (source : https://github.com/parse-community/Parse-SDK-JS/blob/8115e959533d1676fe5e5551bc81888b21fc12ef/src/ParseLiveQuery.js)
+         * https://docs.parseplatform.org/js/guide/#websocket-status
+         */
+         namespace LiveQuery {
+            function on(
+                event: 'open' | 'close',
+                /** When we establish ('open') or lose the WebSocket connection to the LiveQuery server, you’ll get this event */
+                listener: () => void,
+            ): void;
+            function on(
+                event: 'error',
+                /** When some network error or LiveQuery server error happens, you’ll get this event. */
+                listener: (error: any) => void,
+            ): void;
         }
 
         /**
