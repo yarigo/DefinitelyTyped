@@ -4,7 +4,7 @@
 //                 Markus <https://github.com/markus-gx>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-export as namespace swell;
+export as namespace Swell;
 
 export interface ProductQuery extends Query {
     category?: string;
@@ -49,76 +49,191 @@ export interface ListResult<T> {
 
 export type PurchaseOptions = 'subscription' | 'standard';
 
-export interface ImageCamelCase {
-    file: {
-        id: string;
-        dateUploaded: string;
-        length: number;
-        md5: string;
-        filename: string | null;
-        contentType: string;
-        metadata: unknown;
-        url: string;
-        width: number;
-        height: number;
-    };
+export interface ImageFileCamelCase {
     id: string;
+    dateUploaded: string;
+    length: number;
+    md5: string;
+    filename: string | null;
+    contentType: string;
+    metadata: unknown;
+    url: string;
+    width: number;
+    height: number;
+}
+
+export interface ImageCamelCase {
+    file: ImageFileCamelCase;
+    id: string;
+}
+
+export interface ImageFileSnakeCase {
+    id: string;
+    date_uploaded: string;
+    length: number;
+    md5: string;
+    filename?: string | null;
+    content_type: string;
+    metadata: unknown;
+    url: string;
+    width: number;
+    height: number;
 }
 
 export interface ImageSnakeCase {
-    file: {
-        id: string;
-        date_uploaded: string;
-        length: number;
-        md5: string;
-        filename?: string | null;
-        content_type: string;
-        metadata: unknown;
-        url: string;
-        width: number;
-        height: number;
-    };
+    file: ImageFileSnakeCase;
     id: string;
 }
 
-export type Image = ImageCamelCase | ImageSnakeCase;
+export type ProductImage = ImageCamelCase | ImageSnakeCase;
+export type CategoryImage = ImageCamelCase | ImageSnakeCase;
+
+export type ProductPurchaseOptionCamelCase = Record<
+    PurchaseOptions,
+    {
+        active: boolean;
+        price: number;
+        sale: boolean;
+        salePrice?: number | null;
+        prices: [
+            {
+                price: number;
+                quantityMin: number;
+                quantityMax: number | null;
+                accountGroup: unknown | null;
+            },
+        ];
+    }
+>;
+
+export type ProductPurchaseOptionSnakeCase = Record<
+    PurchaseOptions,
+    {
+        active: boolean;
+        price: number;
+        sale: boolean;
+        sale_price?: number | null;
+        prices: [
+            {
+                price: number;
+                quantity_min: number;
+                quantity_max: number | null;
+                account_group: unknown | null;
+            },
+        ];
+    }
+>;
+
+export type ProductPurchaseOption = ProductPurchaseOptionSnakeCase | ProductPurchaseOptionCamelCase;
+
+export interface ProductVariantSnakeCase {
+    active: boolean;
+    cost: number | null;
+    currency: string;
+    date_created: string;
+    date_updated: string;
+    dimensions: unknown[];
+    id: string;
+    images: ImageFileSnakeCase[];
+    name: string;
+    option_value_ids: string[];
+    parent_id: string;
+    price: number | null;
+    prices: unknown[];
+    purchase_options: ProductPurchaseOptionSnakeCase;
+    sale_price: number | null;
+    sale: boolean;
+    sku: string;
+    stock_level: number;
+    weight: number | null;
+}
+
+export interface ProductVariantCamelCase {
+    active: boolean;
+    cost: number | null;
+    currency: string;
+    dateCreated: string;
+    dateUpdated: string;
+    dimensions: unknown[];
+    id: string;
+    images: ImageFileSnakeCase[];
+    name: string;
+    optionValueIds: string[];
+    parentId: string;
+    price: number | null;
+    prices: unknown[];
+    purchaseOptions: ProductPurchaseOptionSnakeCase;
+    salePrice: number | null;
+    sale: boolean;
+    sku: string;
+    stockLevel: number;
+    weight: number | null;
+}
+
+export type ProductVariant = ProductVariantCamelCase | ProductVariantSnakeCase;
+
+export interface ProductOptionValueSnakeCase {
+    name: string;
+    id: string;
+    price: null;
+    shipment_weight: null;
+    description: null;
+}
+
+export interface ProductOptionSnakeCase {
+    id: string;
+    values: ProductOptionValueSnakeCase[];
+    active: true;
+    description: null;
+    input_type: string;
+    name: string;
+    required: boolean;
+    variant: boolean;
+}
+
+export interface ProductOptionValueCamelCase {
+    name: string;
+    id: string;
+    price: null;
+    shipmentWeight: null;
+    description: null;
+}
+
+export interface ProductOptionCamelCase {
+    id: string;
+    values: ProductOptionValueCamelCase[];
+    active: boolean;
+    description: string | null;
+    inputType: string;
+    name: string;
+    required: boolean;
+    variant: boolean;
+}
+
+export type ProductOption = ProductOptionCamelCase | ProductOptionSnakeCase;
+
+export type ProductOptionValue = ProductOptionValueCamelCase | ProductOptionValueSnakeCase;
 
 export interface ProductCamelCase {
     price: number;
     sale: boolean;
     salePrice?: number;
+    origPrice?: number;
     sku: unknown;
     slug: string;
     stockLevel: number;
     stockPurchasable: boolean;
     stockTracking: boolean;
-    options?: Array<{
-        id: string;
-        values: [
-            {
-                name: string;
-                id: string;
-                price: null;
-                shipmentWeight: null;
-                description: null;
-            },
-        ];
-        active: true;
-        description: null;
-        inputType: 'select';
-        name: 'Size';
-        required: true;
-        variant: true;
-    }>;
+    options?: ProductOptionCamelCase[];
     attributes: unknown;
     content: any;
     description: string;
     id: string;
-    images: ImageCamelCase[];
+    images: ProductImage[];
     name: string;
     variants?: {
         count: number;
-        results: ProductCamelCase[];
+        results: ProductVariantCamelCase[];
     };
     crossSells?: Array<{
         id: string;
@@ -128,44 +243,29 @@ export interface ProductCamelCase {
         id: string;
         productId: string;
     }>;
+    purchaseOptions?: ProductPurchaseOptionCamelCase;
 }
 
 export interface ProductSnakeCase {
     price: number;
     sale: boolean;
     sale_price?: number;
+    orig_price?: number;
     sku: unknown;
     slug: string;
     stock_level: number;
     stock_purchasable: boolean;
     stock_tracking: boolean;
-    options?: Array<{
-        id: string;
-        values: [
-            {
-                name: string;
-                id: string;
-                price: null;
-                shipment_weight: null;
-                description: null;
-            },
-        ];
-        active: true;
-        description: null;
-        input_type: 'select';
-        name: 'Size';
-        required: true;
-        variant: true;
-    }>;
+    options?: ProductOptionSnakeCase;
     attributes: unknown;
     content: any;
     description: string;
     id: string;
-    images: ImageSnakeCase[];
+    images: ProductImage[];
     name: string;
     variants?: {
         count: number;
-        results: ProductSnakeCase[];
+        results: ProductVariantSnakeCase[];
     };
     cross_sells?: Array<{
         id: string;
@@ -175,6 +275,7 @@ export interface ProductSnakeCase {
         id: string;
         product_id: string;
     }>;
+    purchase_options?: ProductPurchaseOptionSnakeCase;
 }
 
 export type Product = ProductCamelCase | ProductSnakeCase;
@@ -239,7 +340,9 @@ export interface BillingSnakeCase extends AddressWithContact {
     last_name: string;
 }
 
-export type Billing = BillingCamelCase | BillingSnakeCase;
+export type CartBilling = BillingCamelCase | BillingSnakeCase;
+
+export type OrderBilling = BillingCamelCase | BillingSnakeCase;
 
 export interface ShippingCamelCase extends AddressWithContact {
     accountAddressId: string | null;
@@ -253,13 +356,19 @@ export interface ShippingSnakeCase extends AddressWithContact {
     last_name: string;
 }
 
-export type Shipping = ShippingCamelCase | ShippingSnakeCase;
+export type CartShipping = ShippingCamelCase | ShippingSnakeCase;
+
+export type OrderShipping = ShippingCamelCase | ShippingSnakeCase;
 
 export interface Coupon {
     name: string;
     id: string;
     description: string;
 }
+
+export type CartCoupon = Coupon;
+
+export type OrderCoupon = Coupon;
 
 export interface Discount {
     type: string;
@@ -268,18 +377,22 @@ export interface Discount {
     id: string;
 }
 
+export type CartDiscount = Discount;
+
+export type OrderDiscount = Discount;
+
 export interface CartCamelCase {
     accountLoggedIn: unknown;
     authTotal: number;
-    billing: Billing;
+    billing: CartBilling;
     captureTotal: number;
     checkoutId: string;
     checkoutUrl: string;
-    coupon: Coupon | null;
+    coupon: CartCoupon | null;
     currency: string;
     dateAbandoned: string;
     dateCreated: string;
-    discounts: Discount[];
+    discounts: CartDiscount[];
     discountTotal: number;
     giftcardTotal: number;
     grandTotal: number;
@@ -297,7 +410,7 @@ export interface CartCamelCase {
     shipmentDiscount: number;
     shipmentPrice: number;
     shipmentTotal: number;
-    shipping: unknown;
+    shipping: CartShipping;
     subTotal: number;
     taxes: unknown;
     taxIncludedTotal: number;
@@ -307,16 +420,16 @@ export interface CartCamelCase {
 export interface CartSnakeCase {
     account_logged_in: unknown;
     auth_total: number;
-    billing: unknown;
+    billing: CartBilling;
     capture_total: number;
     checkout_id: string;
     checkout_url: string;
-    coupon: Coupon | null;
+    coupon: CartCoupon | null;
     coupon_id?: string;
     currency: string;
     date_abandoned: string;
     date_created: string;
-    discounts: Discount[];
+    discounts: CartDiscount[];
     discount_total: number;
     giftcard_total: number;
     grand_total: number;
@@ -324,7 +437,7 @@ export interface CartSnakeCase {
     id: string;
     item_discount: number;
     item_quantity: number;
-    items: CartItem[];
+    items: CartItemSnakeCase[];
     item_shipment_weight: number;
     item_tax: number;
     promotion_ids: unknown;
@@ -334,7 +447,7 @@ export interface CartSnakeCase {
     shipment_discount: number;
     shipment_price: number;
     shipment_total: number;
-    shipping: unknown;
+    shipping: CartShipping;
     sub_total: number;
     taxes: unknown;
     tax_included_total: number;
@@ -343,6 +456,24 @@ export interface CartSnakeCase {
 
 export type Cart = CartCamelCase | CartSnakeCase;
 
+export interface OrderGiftcardCamelCase {
+    amount?: number;
+    code?: string | null;
+    codeFormatted?: string | null;
+    id?: string | null;
+    last4?: string | null;
+}
+
+export interface OrderGiftcardSnakeCase {
+    amount?: number;
+    code?: string | null;
+    code_formatted?: string | null;
+    id?: string | null;
+    last4?: string | null;
+}
+
+export type OrderGiftcard = OrderGiftcardCamelCase | OrderGiftcardSnakeCase;
+
 export interface OrderCamelCase {
     account: unknown;
     accountCreditAmount: unknown;
@@ -350,18 +481,18 @@ export interface OrderCamelCase {
     accountId: string;
     accountInfoSaved: unknown;
     accountLoggedIn: unknown;
-    billing: Billing;
+    billing: OrderBilling;
     comments: unknown;
-    coupon: Coupon | null;
+    coupon: OrderCoupon | null;
     couponCode: unknown;
     couponId?: string;
     currency: string;
     dateCreated: string;
     delivered: boolean;
-    discounts: Discount[];
+    discounts: OrderDiscount[];
     discountTotal: number;
     gift: unknown;
-    giftcards: unknown;
+    giftcards: OrderGiftcard[];
     giftcardTotal: number;
     giftMessage: unknown;
     grandTotal: number;
@@ -375,7 +506,7 @@ export interface OrderCamelCase {
     itemQuantityDelivered: number;
     itemQuantityReturnable: number;
     itemQuantityReturned: number;
-    items: CartItem[];
+    items: CartItemCamelCase[];
     itemShipmentWeight: number;
     itemTax: number;
     itemTaxIncluded: unknown;
@@ -391,7 +522,7 @@ export interface OrderCamelCase {
     shipmentTax: unknown;
     shipmentTaxIncluded: unknown;
     shipmentTotal: number;
-    shipping: Shipping;
+    shipping: OrderShipping;
     status: string;
     subTotal: number;
     taxes: unknown;
@@ -406,18 +537,18 @@ export interface OrderSnakeCase {
     account_id: string;
     account_info_saved: unknown;
     account_logged_in: unknown;
-    billing: Billing;
+    billing: OrderBilling;
     comments: unknown;
-    coupon: Coupon | null;
+    coupon: OrderCoupon | null;
     coupon_code: unknown;
     coupon_id?: string;
     currency: string;
     date_created: string;
     delivered: boolean;
-    discounts: Discount[];
+    discounts: OrderDiscount[];
     discount_total: number;
     gift: unknown;
-    giftcards: unknown;
+    giftcards: OrderGiftcard;
     giftcard_total: number;
     gift_message: unknown;
     grand_total: number;
@@ -431,7 +562,7 @@ export interface OrderSnakeCase {
     item_quantity_delivered: number;
     item_quantity_returnable: number;
     item_quantity_returned: number;
-    items: CartItem[];
+    items: CartItemSnakeCase[];
     item_shipment_weight: number;
     item_tax: number;
     item_tax_included: unknown;
@@ -447,7 +578,7 @@ export interface OrderSnakeCase {
     shipment_tax: unknown;
     shipment_tax_included: unknown;
     shipment_total: number;
-    shipping: Shipping;
+    shipping: OrderShipping;
     status: string;
     sub_total: number;
     taxes: unknown;
@@ -479,12 +610,10 @@ export interface InitOptions {
     vaultUrl?: string;
 }
 
-export type Category = CategoryCamelCase | CategorySnakeCase;
-
 export interface CategoryCamelCase {
     description?: string;
     id: string;
-    images: Image[];
+    images: CategoryImage[];
     metaDescription?: string;
     name: string;
     parentId?: string;
@@ -495,13 +624,15 @@ export interface CategoryCamelCase {
 export interface CategorySnakeCase {
     description?: string;
     id: string;
-    images: Image[];
+    images: CategoryImage[];
     meta_description?: string;
     name: string;
     parent_id?: string;
     slug: string;
     topId: string;
 }
+
+export type Category = CategoryCamelCase | CategorySnakeCase;
 
 export interface Attribute {
     filterable: boolean;
@@ -547,7 +678,7 @@ export namespace account {
     function deleteCard(id: string): Promise<unknown>;
     function get(): Promise<unknown>;
     function getAddresses({}): Promise<unknown>;
-    function getOrder(id?: string): Promise<unknown>;
+    function getOrder(id?: string): Promise<Order>;
     function listAddresses(): Promise<unknown>;
     function listCards(): Promise<unknown>;
     function listOrders(input: object): Promise<unknown>;
