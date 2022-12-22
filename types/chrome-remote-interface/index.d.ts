@@ -158,10 +158,16 @@ declare namespace CDP {
     type GetReturnType<D extends string, E extends string> =
         `${D}.${E}` extends keyof ProtocolMappingApi.Events ?
             ProtocolMappingApi.Events[`${D}.${E}`][0] : never;
-    type DoEventProps<D extends string> = {
+    type DoEventPromises<D extends string> = {
         [event in GetEvent<D>]:
-            (listener: (params: GetReturnType<D, event>, sessionId?: string) => void) => () => Client};
-    type DoEventObj<D> = D extends string ? DoEventProps<D> : Record<keyof any, never>;
+            // tslint:disable-next-line: void-return
+            () => Promise<GetReturnType<D, event> extends undefined ? void : GetReturnType<D, event>>
+    };
+    type DoEventListeners<D extends string> = {
+        [event in GetEvent<D>]:
+            (listener: (params: GetReturnType<D, event>, sessionId?: string) => void) => () => Client
+    };
+    type DoEventObj<D> = D extends string ? DoEventPromises<D> & DoEventListeners<D> : Record<keyof any, never>;
 
     type IsNullableObj<T> = Record<keyof T, undefined> extends T ? true : false;
     /**
@@ -176,7 +182,7 @@ declare namespace CDP {
             T[key]
     };
 
-    type ImproveAPI<T> = {[key in keyof T]: OptIfParamNullable<T[key]> & DoEventObj<key>};
+    type ImproveAPI<T> = {[key in keyof T]: DoEventObj<key> & OptIfParamNullable<T[key]>};
     interface StableDomains {
         Browser: ProtocolProxyApi.BrowserApi;
         Debugger: ProtocolProxyApi.DebuggerApi;
