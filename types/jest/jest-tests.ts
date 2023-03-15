@@ -1675,6 +1675,17 @@ describe.each([
     });
 });
 
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34617
+
+it.each<number>([1, 2, 3])('dummy: %d', (num, done) => {
+    done();
+});
+
+const casesReadonlyArray = [[1, 2, 3] as ReadonlyArray<number>] as ReadonlyArray<ReadonlyArray<number>>;
+it.each(casesReadonlyArray)('%d', (a, b, c) => {
+    expect(a + b).toBe(c);
+});
+
 interface Case {
     a: number;
     b: number;
@@ -1686,9 +1697,10 @@ describe.each`
     ${1} | ${1} | ${2}
     ${1} | ${2} | ${3}
     ${2} | ${1} | ${3}
-`('$a + $b', ({ a, b, expected }: Case) => {
+`('$a + $b', ({ a, b, expected }: Case, done) => {
     test(`returns ${expected}`, () => {
         expect(a + b).toBe(expected);
+        done();
     });
 });
 
@@ -1754,10 +1766,19 @@ test.each([
     5000,
 );
 
+test.each([
+    [
+        { prop1: true, prop2: true },
+        { prop1: true, prop2: true },
+    ],
+    [{ prop1: true }, { prop1: true, prop2: false }],
+])('%j -> %j', (input, output) => {
+    console.log(input, output);
+});
+
 declare const constCases: [['a', 'b', 'ab'], ['d', 2, 'd2']];
 test.each(constCases)('%s + %s', (...args) => {
-    // following assertion is skipped because of flaky testing
-    // _$ExpectType ["a", "b", "ab"] | ["d", 2, "d2"]
+    // $ExpectType ["a", "b", "ab"] | ["d", 2, "d2"]
     args;
 });
 
@@ -1767,8 +1788,7 @@ declare const constCasesWithMoreThanTen: [
 ];
 
 test.each(constCasesWithMoreThanTen)('should fall back with more than 10 args', (...args) => {
-    // following assertion is skipped because of flaky testing
-    // _$ExpectType [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] | [91, 92, 93, 94, 95, 96, 97, 98, 99, 910, 911]
+    // $ExpectType [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] | [91, 92, 93, 94, 95, 96, 97, 98, 99, 910, 911]
     args;
 });
 
