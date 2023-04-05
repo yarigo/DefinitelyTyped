@@ -18,6 +18,6 @@
     },
     "files": [
         "index.d.ts",
-        "query-string-params-tests.ts"
+        "steam-tradeoffer-manager-tests.ts"
     ]
 }
