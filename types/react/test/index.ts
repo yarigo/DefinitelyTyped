@@ -9,6 +9,7 @@ import shallowCompare = require("react-addons-shallow-compare");
 import update = require("react-addons-update");
 import createReactClass = require("create-react-class");
 import * as DOM from "react-dom-factories";
+import 'trusted-types';
 
 // NOTE: forward declarations for tests
 declare function setInterval(...args: any[]): any;
@@ -526,6 +527,18 @@ DOM.svg({
     })
 );
 
+declare const window: Window;
+const trustedTypes = window.trustedTypes!;
+const trustedHtml = trustedTypes.emptyHTML;
+
+const trustedTypesHTMLAttr: React.HTMLProps<HTMLElement> = {
+    dangerouslySetInnerHTML: {
+        __html: trustedHtml
+    }
+};
+DOM.div(trustedTypesHTMLAttr);
+DOM.span(trustedTypesHTMLAttr);
+
 //
 // React.Children
 // --------------------------------------------------------------------------
@@ -568,39 +581,6 @@ const mappedChildrenArray6 = React.Children.map(renderPropsChildren, element => 
 // The return type may not be an array
 // @ts-expect-error
 const mappedChildrenArray7 = React.Children.map(nodeChildren, node => node).map;
-
-//
-// Example from http://facebook.github.io/react/
-// --------------------------------------------------------------------------
-
-interface TimerState {
-    secondsElapsed: number;
-}
-class Timer extends React.Component<{}, TimerState> {
-    state = {
-        secondsElapsed: 0
-    };
-    private _interval: number;
-    tick() {
-        this.setState((prevState, props) => ({
-            secondsElapsed: prevState.secondsElapsed + 1
-        }));
-    }
-    componentDidMount() {
-        this._interval = setInterval(() => this.tick(), 1000);
-    }
-    componentWillUnmount() {
-        clearInterval(this._interval);
-    }
-    render() {
-        return DOM.div(
-            null,
-            "Seconds Elapsed: ",
-            this.state.secondsElapsed
-        );
-    }
-}
-ReactDOM.render(React.createElement(Timer), container);
 
 //
 // createFragment addon
