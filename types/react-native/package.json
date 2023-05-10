@@ -1,6 +1,6 @@
 {
     "private": true,
     "dependencies": {
-        "rimraf": "^5.0.0"
+        "@react-native/virtualized-lists": "^0.72.4"
     }
 }
