@@ -138,20 +138,50 @@ describe.skip('skip shorthand', {
     signal: new AbortController().signal,
     timeout: Infinity,
 });
-it.skip('todo shorthand', {
+it.skip('skip shorthand', {
+    concurrency: 1,
+    only: true,
+    signal: new AbortController().signal,
+    timeout: Infinity,
+});
+test.skip('skip shorthand', {
     concurrency: 1,
     only: true,
     signal: new AbortController().signal,
     timeout: Infinity,
 });
 
-describe.todo('skip shorthand', {
+describe.todo('todo shorthand', {
     concurrency: 1,
     only: true,
     signal: new AbortController().signal,
     timeout: Infinity,
 });
 it.todo('todo shorthand', {
+    concurrency: 1,
+    only: true,
+    signal: new AbortController().signal,
+    timeout: Infinity,
+});
+test.todo('todo shorthand', {
+    concurrency: 1,
+    only: true,
+    signal: new AbortController().signal,
+    timeout: Infinity,
+});
+describe.only('only shorthand', {
+    concurrency: 1,
+    only: true,
+    signal: new AbortController().signal,
+    timeout: Infinity,
+});
+it.only('only shorthand', {
+    concurrency: 1,
+    only: true,
+    signal: new AbortController().signal,
+    timeout: Infinity,
+});
+test.only('only shorthand', {
     concurrency: 1,
     only: true,
     signal: new AbortController().signal,
@@ -167,7 +197,9 @@ describe(cb => {
 });
 
 // Test callback mode
-it(cb => {
+it((t, cb) => {
+    // $ExpectType TestContext
+    t;
     // $ExpectType (result?: any) => void
     cb;
     // $ExpectType void
