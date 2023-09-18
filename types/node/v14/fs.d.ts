@@ -1,4 +1,4 @@
-declare module 'fs' {
+declare module 'node:fs' {
     import * as stream from 'stream';
     import EventEmitter = require('events');
     import { URL } from 'url';
@@ -2071,41 +2071,47 @@ declare module 'fs' {
      */
     export function accessSync(path: PathLike, mode?: number): void;
 
-    /**
-     * Returns a new `ReadStream` object.
-     * @param path A path to a file. If a URL is provided, it must use the `file:` protocol.
-     * URL support is _experimental_.
-     */
-    export function createReadStream(path: PathLike, options?: BufferEncoding | {
+    interface StreamOptions {
         flags?: string | undefined;
         encoding?: BufferEncoding | undefined;
         fd?: number | undefined;
         mode?: number | undefined;
         autoClose?: boolean | undefined;
-        /**
-         * @default false
-         */
         emitClose?: boolean | undefined;
         start?: number | undefined;
-        end?: number | undefined;
         highWaterMark?: number | undefined;
-    }): ReadStream;
+    }
+    interface FSImplementation {
+        open: (...args: any[]) => any;
+        close: (...args: any[]) => any;
+    }
+    interface CreateReadStreamFSImplementation extends FSImplementation {
+        read: (...args: any[]) => any;
+    }
+    interface CreateWriteStreamFSImplementation extends FSImplementation {
+        write: (...args: any[]) => any;
+        writev?: (...args: any[]) => any;
+    }
+    interface ReadStreamOptions extends StreamOptions {
+        fs?: CreateReadStreamFSImplementation | null | undefined;
+        end?: number | undefined;
+    }
+    interface WriteStreamOptions extends StreamOptions {
+        fs?: CreateWriteStreamFSImplementation | null | undefined;
+    }
+    /**
+     * Returns a new `ReadStream` object.
+     * @param path A path to a file. If a URL is provided, it must use the `file:` protocol.
+     * URL support is _experimental_.
+     */
+    export function createReadStream(path: PathLike, options?: BufferEncoding | ReadStreamOptions): ReadStream;
 
     /**
      * Returns a new `WriteStream` object.
      * @param path A path to a file. If a URL is provided, it must use the `file:` protocol.
      * URL support is _experimental_.
      */
-    export function createWriteStream(path: PathLike, options?: BufferEncoding | {
-        flags?: string | undefined;
-        encoding?: BufferEncoding | undefined;
-        fd?: number | undefined;
-        mode?: number | undefined;
-        autoClose?: boolean | undefined;
-        emitClose?: boolean | undefined;
-        start?: number | undefined;
-        highWaterMark?: number | undefined;
-    }): WriteStream;
+    export function createWriteStream(path: PathLike, options?: BufferEncoding | WriteStreamOptions): WriteStream;
 
     /**
      * Asynchronous fdatasync(2) - synchronize a file's in-core state with storage device.
@@ -2276,6 +2282,6 @@ declare module 'fs' {
         bigint?: boolean | undefined;
     }
 }
-declare module 'node:fs' {
-    export * from 'fs';
+declare module 'fs' {
+    export * from 'node:fs';
 }

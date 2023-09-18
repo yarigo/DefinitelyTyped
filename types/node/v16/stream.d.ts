@@ -16,7 +16,7 @@
  * usually not necessary to use the `stream` module to consume streams.
  * @see [source](https://github.com/nodejs/node/blob/v16.9.0/lib/stream.js)
  */
-declare module 'stream' {
+declare module 'node:stream' {
     import { EventEmitter, Abortable } from 'node:events';
     import { Blob as NodeBlob } from 'node:buffer';
     import * as streamPromises from 'node:stream/promises';
@@ -44,6 +44,12 @@ declare module 'stream' {
         interface ReadableOptions extends StreamOptions<Readable> {
             encoding?: BufferEncoding | undefined;
             read?(this: Readable, size: number): void;
+        }
+        interface ArrayOptions {
+            /** the maximum concurrent invocations of `fn` to call on the stream at once. **Default: 1**. */
+            concurrency?: number;
+            /** allows destroying the stream if the signal is aborted. */
+            signal?: AbortSignal;
         }
         /**
          * @since v0.9.4
@@ -397,6 +403,33 @@ declare module 'stream' {
              */
             wrap(stream: NodeJS.ReadableStream): this;
             push(chunk: any, encoding?: BufferEncoding): boolean;
+            /**
+             * The iterator created by this method gives users the option to cancel the destruction
+             * of the stream if the `for await...of` loop is exited by `return`, `break`, or `throw`,
+             * or if the iterator should destroy the stream if the stream emitted an error during iteration.
+             * @since v16.3.0
+             * @param options.destroyOnReturn When set to `false`, calling `return` on the async iterator,
+             * or exiting a `for await...of` iteration using a `break`, `return`, or `throw` will not destroy the stream.
+             * **Default: `true`**.
+             */
+            iterator(options?: {destroyOnReturn?: boolean}): AsyncIterableIterator<any>;
+            /**
+             * This method allows mapping over the stream. The *fn* function will be called for every chunk in the stream.
+             * If the *fn* function returns a promise - that promise will be `await`ed before being passed to the result stream.
+             * @since v17.4.0, v16.14.0
+             * @param fn a function to map over every chunk in the stream. Async or not.
+             * @returns a stream mapped with the function *fn*.
+             */
+            map(fn: (data: any, options?: Pick<ArrayOptions, "signal">) => any, options?: ArrayOptions): Readable;
+            /**
+             * This method allows filtering the stream. For each chunk in the stream the *fn* function will be called
+             * and if it returns a truthy value, the chunk will be passed to the result stream.
+             * If the *fn* function returns a promise - that promise will be `await`ed.
+             * @since v17.4.0, v16.14.0
+             * @param fn a function to filter chunks from the stream. Async or not.
+             * @returns a stream filtered with the predicate *fn*.
+             */
+            filter(fn: (data: any, options?: Pick<ArrayOptions, "signal">) => boolean | Promise<boolean>, options?: ArrayOptions): Readable;
             _destroy(error: Error | null, callback: (error?: Error | null) => void): void;
             /**
              * Destroy the stream. Optionally emit an `'error'` event, and emit a `'close'`event (unless `emitClose` is set to `false`). After this call, the readable
@@ -1357,7 +1390,7 @@ declare module 'stream' {
     }
     export = internal;
 }
-declare module 'node:stream' {
-    import stream = require('stream');
+declare module 'stream' {
+    import stream = require('node:stream');
     export = stream;
 }

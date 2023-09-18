@@ -83,6 +83,12 @@ declare namespace EW {
          * @param deny_reason The deny reason set if the status code is a 403
          */
         respondWith(status: number, headers: object, body: string, deny_reason?: string): void;
+
+        /**
+         * Checks if the request has been terminated. Returns `true` after
+         * `respondWith()` has been called.
+         */
+        wasTerminated(): boolean;
     }
 
     interface HasStatus {
@@ -434,22 +440,22 @@ declare namespace EW {
     }
 
     // onClientRequest
-    interface IngressClientRequest extends MutatesHeaders, ReadsHeaders, ReadsVariables, Request, HasRespondWith, HasRoute, HasCacheKey, MutatesVariables {
+    interface IngressClientRequest extends MutatesHeaders, ReadsHeaders, ReadAllHeader, ReadsVariables, Request, HasRespondWith, HasRoute, HasCacheKey, MutatesVariables {
     }
 
     // onOriginRequest
-    interface IngressOriginRequest extends MutatesHeaders, ReadsHeaders, ReadsVariables, Request, HasRespondWith, MutatesVariables {
+    interface IngressOriginRequest extends MutatesHeaders, ReadsHeaders, ReadAllHeader, ReadsVariables, Request, HasRespondWith, MutatesVariables {
     }
 
     // onOriginResponse
-    interface EgressOriginRequest extends ReadsHeaders, ReadsVariables, Request, HasRespondWith, MutatesVariables {
+    interface EgressOriginRequest extends ReadsHeaders, ReadAllHeader, ReadsVariables, Request, HasRespondWith, MutatesVariables {
     }
 
     interface EgressOriginResponse extends MutatesHeaders, ReadsHeaders, HasStatus {
     }
 
     // onClientResponse
-    interface EgressClientRequest extends ReadsHeaders, ReadsVariables, Request, HasRespondWith, MutatesVariables {
+    interface EgressClientRequest extends ReadsHeaders, ReadAllHeader, ReadsVariables, Request, HasRespondWith, MutatesVariables {
     }
 
     interface EgressClientResponse extends MutatesHeaders, ReadsHeaders, HasStatus {
@@ -689,6 +695,7 @@ declare namespace EW {
     }
 
     export {
+        Headers,
         ReadableStreamEW,
         WritableStreamEW,
         ReadableStreamDefaultControllerEW,

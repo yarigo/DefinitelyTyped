@@ -28,9 +28,9 @@
  * ```
  * @see [source](https://github.com/nodejs/node/blob/v16.9.0/lib/perf_hooks.js)
  */
-declare module 'perf_hooks' {
+declare module 'node:perf_hooks' {
     import { AsyncResource } from 'node:async_hooks';
-    type EntryType = 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http';
+    type EntryType = 'node' | 'mark' | 'measure' | 'gc' | 'function' | 'http2' | 'http' | 'dns';
     interface NodeGCPerformanceDetail {
         /**
          * When `performanceEntry.entryType` is equal to 'gc', `the performance.kind` property identifies
@@ -580,7 +580,22 @@ declare module 'perf_hooks' {
      * @since v15.9.0
      */
     function createHistogram(options?: CreateHistogramOptions): RecordableHistogram;
+
+    import { performance as _performance } from 'perf_hooks';
+    global {
+        /**
+         * `performance` is a global reference for `require('perf_hooks').performance`
+         * https://nodejs.org/api/globals.html#performance
+         * @since v16.0.0
+         */
+        var performance: typeof globalThis extends {
+            onmessage: any;
+            performance: infer T;
+        }
+            ? T
+            : typeof _performance;
+    }
 }
-declare module 'node:perf_hooks' {
-    export * from 'perf_hooks';
+declare module 'perf_hooks' {
+    export * from 'node:perf_hooks';
 }

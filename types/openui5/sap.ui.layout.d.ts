@@ -1,4 +1,4 @@
-// For Library Version: 1.116.0
+// For Library Version: 1.118.0
 
 declare module "sap/ui/layout/library" {
   import Control from "sap/ui/core/Control";
@@ -1920,7 +1920,7 @@ declare module "sap/ui/layout/cssgrid/CSSGrid" {
      */
     getGridColumnGap(): CSSSize;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Implements IGridConfigurable interface
      *
@@ -1940,7 +1940,7 @@ declare module "sap/ui/layout/cssgrid/CSSGrid" {
      */
     getGridGap(): cssgrid.CSSGridGapShortHand;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Returns the layout configuration of the `CSSGrid`.
      *
@@ -2721,7 +2721,7 @@ declare module "sap/ui/layout/cssgrid/GridBoxLayout" {
      */
     static getMetadata(): ManagedObjectMetadata;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Returns a gridTemplateColumns value based on boxWidth and boxMinWidth properties
      *
@@ -3199,7 +3199,7 @@ declare module "sap/ui/layout/cssgrid/GridLayoutBase" {
      */
     static getMetadata(): ManagedObjectMetadata;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Removes all display:grid styles from the provided HTML element
      */
@@ -3210,7 +3210,7 @@ declare module "sap/ui/layout/cssgrid/GridLayoutBase" {
       oElement: HTMLElement
     ): void;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Sets all display:grid styles to the provided HTML element
      */
@@ -3243,7 +3243,7 @@ declare module "sap/ui/layout/cssgrid/GridLayoutBase" {
      */
     isResponsive(): boolean;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Hook function for the Grid's onAfterRendering
      */
@@ -3254,7 +3254,7 @@ declare module "sap/ui/layout/cssgrid/GridLayoutBase" {
       oGrid: cssgrid.IGridConfigurable
     ): void;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Hook function for the Grid's resize. Will be called if the grid layout is responsive.
      */
@@ -3457,7 +3457,7 @@ declare module "sap/ui/layout/cssgrid/GridResponsiveLayout" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:layoutChange layoutChange} to attached listeners.
      *
@@ -3631,7 +3631,10 @@ declare module "sap/ui/layout/cssgrid/GridResponsiveLayout" {
     layout?: string;
   }
 
-  export type GridResponsiveLayout$LayoutChangeEvent = Event<GridResponsiveLayout$LayoutChangeEventParameters>;
+  export type GridResponsiveLayout$LayoutChangeEvent = Event<
+    GridResponsiveLayout$LayoutChangeEventParameters,
+    GridResponsiveLayout
+  >;
 }
 
 declare module "sap/ui/layout/cssgrid/GridSettings" {
@@ -4286,7 +4289,7 @@ declare module "sap/ui/layout/cssgrid/ResponsiveColumnLayout" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:layoutChange layoutChange} to attached listeners.
      *
@@ -4321,7 +4324,10 @@ declare module "sap/ui/layout/cssgrid/ResponsiveColumnLayout" {
     layout?: string;
   }
 
-  export type ResponsiveColumnLayout$LayoutChangeEvent = Event<ResponsiveColumnLayout$LayoutChangeEventParameters>;
+  export type ResponsiveColumnLayout$LayoutChangeEvent = Event<
+    ResponsiveColumnLayout$LayoutChangeEventParameters,
+    ResponsiveColumnLayout
+  >;
 }
 
 declare module "sap/ui/layout/DynamicSideContent" {
@@ -4576,7 +4582,7 @@ declare module "sap/ui/layout/DynamicSideContent" {
     ): this;
     /**
      * @since 1.32
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:breakpointChanged breakpointChanged} to attached listeners.
      *
@@ -5015,7 +5021,10 @@ declare module "sap/ui/layout/DynamicSideContent" {
     currentBreakpoint?: string;
   }
 
-  export type DynamicSideContent$BreakpointChangedEvent = Event<DynamicSideContent$BreakpointChangedEventParameters>;
+  export type DynamicSideContent$BreakpointChangedEvent = Event<
+    DynamicSideContent$BreakpointChangedEventParameters,
+    DynamicSideContent
+  >;
 }
 
 declare module "sap/ui/layout/FixFlex" {
@@ -6568,7 +6577,7 @@ declare module "sap/ui/layout/form/FormContainer" {
     static getMetadata(): ElementMetadata;
     /**
      * @since 1.74.0
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Sets the editable state of the `FormContainer`.
      *
@@ -7004,22 +7013,6 @@ declare module "sap/ui/layout/form/FormElement" {
      */
     static getMetadata(): ElementMetadata;
     /**
-     * @since 1.74.0
-     * Protected:  Do not call from applications (only from related classes in the framework)
-     *
-     * Sets the editable state of the `FormElement`.
-     *
-     * This must only be called from the `Form` and it's `FormContainers`.
-     *
-     * Labels inside of a `Form` must be invalidated if `editable` changed on `Form`.
-     */
-    _setEditable(
-      /**
-       * Editable state of the `Form`
-       */
-      bEditable: boolean
-    ): void;
-    /**
      * Adds some field to the aggregation {@link #getFields fields}.
      *
      * @returns Reference to `this` in order to allow method chaining
@@ -7108,7 +7101,7 @@ declare module "sap/ui/layout/form/FormElement" {
       iIndex: int
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Labels inside of a Form must be invalidated if "editable" changed on Form
      */
@@ -7201,6 +7194,8 @@ declare module "sap/ui/layout/form/FormLayout" {
 
   import { BackgroundDesign } from "sap/ui/layout/library";
 
+  import LayoutData from "sap/ui/core/LayoutData";
+
   import ElementMetadata from "sap/ui/core/ElementMetadata";
 
   import { PropertyBindingInfo } from "sap/ui/base/ManagedObject";
@@ -7288,6 +7283,55 @@ declare module "sap/ui/layout/form/FormLayout" {
      * @returns Value of property `backgroundDesign`
      */
     getBackgroundDesign(): BackgroundDesign | keyof typeof BackgroundDesign;
+    /**
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * In {@link sap.ui.layout.SemanticFormElement SemanticFormElement}, delimiters are rendered. They should
+     * use only a small space. So `Layout`-dependent `LayoutData` are needed.
+     *
+     * This function needs to be implemented by the specific `Layout`.
+     *
+     * @returns LayoutData or promise retuning LayoutData
+     */
+    getLayoutDataForDelimiter(): LayoutData | Promise<any>;
+    /**
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * In {@link sap.ui.layout.SemanticFormElement SemanticFormElement}, delimiters are rendered. The fields
+     * should be rendered per default in a way, the field and the corresponding delimiter filling one row in
+     * phone mode. In desktop mode they should all be in one row.
+     *
+     * This function needs to be implemented by the specific `Layout`.
+     *
+     * @returns LayoutData or promise retuning LayoutData
+     */
+    getLayoutDataForSemanticField(
+      /**
+       * Number of field in the `SemanticFormElement`
+       */
+      iFields: int,
+      /**
+       * Index of field in the `SemanticFormElement`
+       */
+      iIndex: int,
+      /**
+       * existing `LayoutData` that might be just changed
+       */
+      oLayoutData?: LayoutData
+    ): LayoutData | Promise<any>;
+    /**
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * For {@link sap.ui.layout.SemanticFormElement SemanticFormElement}, all text-based controls should be
+     * concatenated in display mode. If the `Layout` supports rendering of single controls, they are rendered
+     * divided by delimiters. If the `Layout` doesn't support this, one concatenated text is rendered. Here
+     * only text is supported, no links or other special rendering.
+     *
+     * This function needs to be implemented by the specific `Layout`.
+     *
+     * @returns `true` if layout allows to render single controls for {@link sap.ui.layout.SemanticFormElement SemanticFormElement}
+     */
+    renderControlsForSemanticElement(): boolean;
     /**
      * @since 1.36.0
      *
@@ -8669,7 +8713,7 @@ declare module "sap/ui/layout/form/SemanticFormElement" {
 
   /**
    * @since 1.86.0
-   * Experimental (since 1.86)
+   * @experimental (since 1.86)
    *
    * A `SemanticFormElement` element is a special `FormElement` that contains semantically connected fields.
    * These field controls are divided by delimiter controls. In display mode, they are rendered as one condensed
@@ -9269,6 +9313,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
      */
     getEmptySpanXL(): int;
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * Gets current value of property {@link #getLabelMinWidth labelMinWidth}.
      *
      * Specifies the min-width in pixels of the label in all form rows.
@@ -9356,10 +9402,11 @@ declare module "sap/ui/layout/form/SimpleForm" {
      * **Note** If possible, set the `layout` before adding content to prevent calculations for the default
      * layout.
      *
-     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used. For compatibility reasons
-     * the default could not be changed.
+     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used.
      *
-     * Default value is `ResponsiveLayout`.
+     * **Note** As of version 1.117, the `ResponsiveGridLayout` is used as default.
+     *
+     * Default value is `ResponsiveGridLayout`.
      *
      * @returns Value of property `layout`
      */
@@ -9379,6 +9426,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
      */
     getMaxContainerCols(): int;
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * Gets current value of property {@link #getMinWidth minWidth}.
      *
      * The overall minimum width in pixels that is used for the `SimpleForm`.
@@ -9804,6 +9853,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
       iEmptySpanXL?: int
     ): this;
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * Sets a new value for property {@link #getLabelMinWidth labelMinWidth}.
      *
      * Specifies the min-width in pixels of the label in all form rows.
@@ -9926,12 +9977,13 @@ declare module "sap/ui/layout/form/SimpleForm" {
      * **Note** If possible, set the `layout` before adding content to prevent calculations for the default
      * layout.
      *
-     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used. For compatibility reasons
-     * the default could not be changed.
+     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used.
+     *
+     * **Note** As of version 1.117, the `ResponsiveGridLayout` is used as default.
      *
      * When called with a value of `null` or `undefined`, the default value of the property will be restored.
      *
-     * Default value is `ResponsiveLayout`.
+     * Default value is `ResponsiveGridLayout`.
      *
      * @returns Reference to `this` in order to allow method chaining
      */
@@ -9963,6 +10015,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
       iMaxContainerCols?: int
     ): this;
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * Sets a new value for property {@link #getMinWidth minWidth}.
      *
      * The overall minimum width in pixels that is used for the `SimpleForm`.
@@ -10067,6 +10121,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
     maxContainerCols?: int | PropertyBindingInfo | `{${string}}`;
 
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * The overall minimum width in pixels that is used for the `SimpleForm`.
      *
      * If the available width is below the given `minWidth` the `SimpleForm` will create a new row for the next
@@ -10102,6 +10158,8 @@ declare module "sap/ui/layout/form/SimpleForm" {
     editable?: boolean | PropertyBindingInfo | `{${string}}`;
 
     /**
+     * @deprecated (since 1.93) - use another `Layout`
+     *
      * Specifies the min-width in pixels of the label in all form rows.
      *
      * **Note:** This property is only used if a `ResponsiveLayout` is used as a layout.
@@ -10117,8 +10175,9 @@ declare module "sap/ui/layout/form/SimpleForm" {
      * **Note** If possible, set the `layout` before adding content to prevent calculations for the default
      * layout.
      *
-     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used. For compatibility reasons
-     * the default could not be changed.
+     * **Note** The `ResponsiveLayout` has been deprecated and must no longer be used.
+     *
+     * **Note** As of version 1.117, the `ResponsiveGridLayout` is used as default.
      */
     layout?:
       | (form.SimpleFormLayout | keyof typeof form.SimpleFormLayout)
@@ -10519,7 +10578,7 @@ declare module "sap/ui/layout/Grid" {
      */
     destroyContent(): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Returns the `Grid` accessibility information.
      * See:
@@ -12107,7 +12166,7 @@ declare module "sap/ui/layout/HorizontalLayout" {
      */
     destroyContent(): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * See:
      * 	sap.ui.core.Control#getAccessibilityInfo
@@ -12379,7 +12438,7 @@ declare module "sap/ui/layout/PaneContainer" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:resize resize} to attached listeners.
      *
@@ -12501,7 +12560,10 @@ declare module "sap/ui/layout/PaneContainer" {
     newSizes?: float[];
   }
 
-  export type PaneContainer$ResizeEvent = Event<PaneContainer$ResizeEventParameters>;
+  export type PaneContainer$ResizeEvent = Event<
+    PaneContainer$ResizeEventParameters,
+    PaneContainer
+  >;
 }
 
 declare module "sap/ui/layout/ResponsiveFlowLayout" {
@@ -13601,7 +13663,7 @@ declare module "sap/ui/layout/Splitter" {
      * @deprecated (since 1.21) - This method is declared as protected in order to assess the need for this
      * feature. It is declared as deprecated because the API might change in case the need for this is high
      * enough to make it part of the official Splitter interface
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Disables the resize handler for this control, this leads to an automatic resize of the contents whenever
      * the control changes its size. The resize handler is enabled in every control instance by default. For
@@ -13615,7 +13677,7 @@ declare module "sap/ui/layout/Splitter" {
       bTemporarily?: boolean
     ): void;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Disables the resizing of the Splitter contents via keyboard. This changes the Splitter bars to non-focusable
      * elements.
@@ -13625,7 +13687,7 @@ declare module "sap/ui/layout/Splitter" {
      * @deprecated (since 1.21) - This method is declared as protected in order to assess the need for this
      * feature. It is declared as deprecated because the API might change in case the need for this is high
      * enough to make it part of the official Splitter interface
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Disables recalculation and resize of the splitter contents while dragging the splitter bar. This means
      * that the contents are resized only once after moving the splitter bar.
@@ -13635,7 +13697,7 @@ declare module "sap/ui/layout/Splitter" {
      * @deprecated (since 1.21) - This method is declared as protected in order to assess the need for this
      * feature. It is declared as deprecated because the API might change in case the need for this is high
      * enough to make it part of the official Splitter interface
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Enables the resize handler for this control, this leads to an automatic resize of the contents whenever
      * the control changes its size. The resize handler is enabled in every control instance by default. For
@@ -13648,7 +13710,7 @@ declare module "sap/ui/layout/Splitter" {
       bTemporarily?: boolean
     ): void;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Enables the resizing of the Splitter contents via keyboard. This makes the Splitter bars focusable elements.
      */
@@ -13657,14 +13719,14 @@ declare module "sap/ui/layout/Splitter" {
      * @deprecated (since 1.21) - This method is declared as protected in order to assess the need for this
      * feature. It is declared as deprecated because the API might change in case the need for this is high
      * enough to make it part of the official Splitter interface
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Enables recalculation and resize of the splitter contents while dragging the splitter bar. This means
      * that the contents are resized several times per second when moving the splitter bar.
      */
     enableLiveResize(): void;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:resize resize} to attached listeners.
      *
@@ -13680,7 +13742,7 @@ declare module "sap/ui/layout/Splitter" {
      * @deprecated (since 1.21) - This method is declared as protected in order to assess the need for this
      * feature. It is declared as deprecated because the API might change in case the need for this is high
      * enough to make it part of the official Splitter interface
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Returns the current actual content sizes as pixel value - these values can change with every resize.
      *
@@ -13887,7 +13949,10 @@ declare module "sap/ui/layout/Splitter" {
     newSizes?: int[];
   }
 
-  export type Splitter$ResizeEvent = Event<Splitter$ResizeEventParameters>;
+  export type Splitter$ResizeEvent = Event<
+    Splitter$ResizeEventParameters,
+    Splitter
+  >;
 }
 
 declare module "sap/ui/layout/SplitterLayoutData" {
@@ -13904,7 +13969,7 @@ declare module "sap/ui/layout/SplitterLayoutData" {
 
   /**
    * @since 1.22.0
-   * Experimental (since 1.22.0) - API is not yet finished and might change completely
+   * @experimental (since 1.22.0) - API is not yet finished and might change completely
    *
    * Holds layout data for the splitter contents. Allowed size values are numeric values ending in "px" and
    * "%" and the special case "auto". (The CSS value "auto" is used internally to recalculate the size of
@@ -14177,7 +14242,7 @@ declare module "sap/ui/layout/VerticalLayout" {
      */
     destroyContent(): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * See:
      * 	sap.ui.core.Control#getAccessibilityInfo

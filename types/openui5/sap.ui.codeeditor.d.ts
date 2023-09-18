@@ -1,4 +1,4 @@
-// For Library Version: 1.116.0
+// For Library Version: 1.118.0
 
 declare module "sap/ui/codeeditor/library" {}
 
@@ -221,7 +221,7 @@ declare module "sap/ui/codeeditor/CodeEditor" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:change change} to attached listeners.
      *
@@ -234,7 +234,7 @@ declare module "sap/ui/codeeditor/CodeEditor" {
       mParameters?: CodeEditor$ChangeEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:liveChange liveChange} to attached listeners.
      *
@@ -392,7 +392,10 @@ declare module "sap/ui/codeeditor/CodeEditor" {
     /**
      * @since 1.54.1
      *
-     * Pretty-prints the content of the editor
+     * Pretty-prints the content of the editor.
+     *
+     * **Note:** Works well only for PHP. For other programming languages, the content might not be formatted
+     * well. In such cases it is recommended to use your own formatting.
      */
     prettyPrint(): void;
     /**
@@ -677,7 +680,10 @@ declare module "sap/ui/codeeditor/CodeEditor" {
     oldValue?: string;
   }
 
-  export type CodeEditor$ChangeEvent = Event<CodeEditor$ChangeEventParameters>;
+  export type CodeEditor$ChangeEvent = Event<
+    CodeEditor$ChangeEventParameters,
+    CodeEditor
+  >;
 
   export interface CodeEditor$LiveChangeEventParameters {
     /**
@@ -691,7 +697,10 @@ declare module "sap/ui/codeeditor/CodeEditor" {
     editorEvent?: object;
   }
 
-  export type CodeEditor$LiveChangeEvent = Event<CodeEditor$LiveChangeEventParameters>;
+  export type CodeEditor$LiveChangeEvent = Event<
+    CodeEditor$LiveChangeEventParameters,
+    CodeEditor
+  >;
 }
 
 declare namespace sap {

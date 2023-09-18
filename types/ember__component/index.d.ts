@@ -7,8 +7,11 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // Minimum TypeScript Version: 4.4
 
+// eslint-disable-next-line @definitelytyped/no-self-import
 import CoreView from '@ember/component/-private/core-view';
+// eslint-disable-next-line @definitelytyped/no-self-import
 import ClassNamesSupport from '@ember/component/-private/class-names-support';
+// eslint-disable-next-line @definitelytyped/no-self-import
 import ViewMixin from '@ember/component/-private/view-mixin';
 import { ComponentManager, Capabilities } from './-private/glimmer-interfaces';
 import { Opaque } from 'ember/-private/type-utils';
@@ -25,7 +28,7 @@ interface TemplateFactory {
 // information supplied via this generic. While it may appear useless on this
 // class definition and extension, it is used by external tools and should not
 // be removed.
-// eslint-disable-next-line no-unnecessary-generics
+// eslint-disable-next-line @definitelytyped/no-unnecessary-generics
 export default interface Component<S = unknown> extends ViewMixin, ClassNamesSupport, Opaque<S> {}
 export default class Component<S = unknown> extends CoreView {
     // methods

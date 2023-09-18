@@ -1,4 +1,4 @@
-declare module 'util' {
+declare module 'node:util' {
     interface InspectOptions extends NodeJS.InspectOptions { }
     type Style = 'special' | 'number' | 'bigint' | 'boolean' | 'undefined' | 'null' | 'string' | 'symbol' | 'date' | 'regexp' | 'module';
     type CustomInspectFunction = (depth: number, options: InspectOptionsStylized) => string;
@@ -11,7 +11,7 @@ declare module 'util' {
     /** @deprecated since v0.11.3 - use a third party module instead. */
     function log(string: string): void;
     function inspect(object: any, showHidden?: boolean, depth?: number | null, color?: boolean): string;
-    function inspect(object: any, options: InspectOptions): string;
+    function inspect(object: any, options?: InspectOptions): string;
     namespace inspect {
         let colors: NodeJS.Dict<[number, number]>;
         let styles: {
@@ -211,6 +211,6 @@ declare module 'util' {
         encodeInto(input: string, output: Uint8Array): EncodeIntoResult;
     }
 }
-declare module 'node:util' {
-    export * from 'util';
+declare module 'util' {
+    export * from 'node:util';
 }

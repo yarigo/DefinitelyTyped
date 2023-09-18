@@ -314,6 +314,7 @@ export interface PlotlyHTMLElement extends HTMLElement {
     ): void;
     removeAllListeners: (handler: string) => void;
     data: Data[];
+    layout: Layout;
 }
 
 export interface ToImgopts {
@@ -707,6 +708,10 @@ export interface Axis {
      * If `B`, *1B*.
      */
     exponentformat: 'none' | 'e' | 'E' | 'power' | 'SI' | 'B';
+    /**
+     * Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is "SI" or "B".
+     */
+    minexponent: number;
     /**
      * 'If `true`, even 4-digit integers are separated
      */
@@ -1514,6 +1519,7 @@ export interface ColorBar {
     separatethousands: boolean;
     exponentformat: 'none' | 'e' | 'E' | 'power' | 'SI' | 'B';
     showexponent: 'all' | 'first' | 'last' | 'none';
+    minexponent: number;
     title: string;
     titlefont: Font;
     titleside: 'right' | 'top' | 'bottom';

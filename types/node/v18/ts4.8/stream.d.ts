@@ -16,12 +16,15 @@
  * usually not necessary to use the `stream` module to consume streams.
  * @see [source](https://github.com/nodejs/node/blob/v18.0.0/lib/stream.js)
  */
-declare module 'stream' {
+declare module 'node:stream' {
     import { EventEmitter, Abortable } from 'node:events';
     import { Blob as NodeBlob } from "node:buffer";
     import * as streamPromises from 'node:stream/promises';
     import * as streamConsumers from 'node:stream/consumers';
     import * as streamWeb from 'node:stream/web';
+
+    type ComposeFnParam = (source: any) => void;
+
     class internal extends EventEmitter {
         pipe<T extends NodeJS.WritableStream>(
             destination: T,
@@ -29,6 +32,7 @@ declare module 'stream' {
                 end?: boolean | undefined;
             }
         ): T;
+        compose<T extends NodeJS.ReadableStream>(stream: T | ComposeFnParam | Iterable<T> | AsyncIterable<T>, options?: { signal: AbortSignal }): T;
     }
     namespace internal {
         class Stream extends internal {
@@ -1448,7 +1452,7 @@ declare module 'stream' {
     }
     export = internal;
 }
-declare module 'node:stream' {
-    import stream = require('stream');
+declare module 'stream' {
+    import stream = require('node:stream');
     export = stream;
 }

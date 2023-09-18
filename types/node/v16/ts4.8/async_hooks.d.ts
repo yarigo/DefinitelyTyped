@@ -8,7 +8,7 @@
  * @experimental
  * @see [source](https://github.com/nodejs/node/blob/v16.9.0/lib/async_hooks.js)
  */
-declare module 'async_hooks' {
+declare module 'node:async_hooks' {
     /**
      * ```js
      * import { executionAsyncId } from 'async_hooks';
@@ -419,6 +419,7 @@ declare module 'async_hooks' {
          * ```
          * @since v13.10.0, v12.17.0
          */
+        run<R>(store: T, callback: () => R): R;
         run<R, TArgs extends any[]>(store: T, callback: (...args: TArgs) => R, ...args: TArgs): R;
         /**
          * Runs a function synchronously outside of a context and returns its
@@ -492,6 +493,6 @@ declare module 'async_hooks' {
         enterWith(store: T): void;
     }
 }
-declare module 'node:async_hooks' {
-    export * from 'async_hooks';
+declare module 'async_hooks' {
+    export * from 'node:async_hooks';
 }

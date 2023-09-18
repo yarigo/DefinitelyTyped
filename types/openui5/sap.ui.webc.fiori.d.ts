@@ -1,9 +1,9 @@
-// For Library Version: 1.116.0
+// For Library Version: 1.118.0
 
 declare module "sap/ui/webc/fiori/library" {
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Different types of Bar design
    */
@@ -27,7 +27,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Different types of FCLLayout.
    */
@@ -101,7 +101,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-page` as header and footer.
    */
@@ -111,7 +111,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.97.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-view-settings-dialog` as filter items
    */
@@ -121,7 +121,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.97.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-filter-item` as values
    */
@@ -131,7 +131,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.106.0
-   * Experimental (since 1.106.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.106.0) - This API is experimental and might change significantly.
    *
    * Different types of IllustrationMessageSize.
    */
@@ -166,7 +166,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.95.0
-   * Experimental (since 1.95.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.95.0) - This API is experimental and might change significantly.
    *
    * Different illustration types of Illustrated Message.
    */
@@ -546,7 +546,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Interface for components that can be slotted inside `ui5-media-gallery` as items.
    */
@@ -556,7 +556,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted as an action inside `ui5-li-notification` and `ui5-li-notification-group`
    */
@@ -566,7 +566,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside a notification list
    */
@@ -576,7 +576,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-product-switch` as items
    */
@@ -586,7 +586,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-shellbar` as items
    */
@@ -596,7 +596,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-side-navigation` as items
    */
@@ -606,7 +606,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-side-navigation-item` as sub-items
    */
@@ -616,7 +616,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.97.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-view-settings-dialog` as sort items
    */
@@ -626,7 +626,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-timeline` as items
    */
@@ -636,7 +636,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-upload-collection` as items
    */
@@ -646,7 +646,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Interface for components that may be slotted inside `ui5-wizard` as wizard steps
    */
@@ -656,7 +656,7 @@ declare module "sap/ui/webc/fiori/library" {
 
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Defines the layout of the content displayed in the `ui5-media-gallery-item`.
    */
@@ -676,7 +676,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Defines the layout type of the thumbnails list of the `ui5-media-gallery` component.
    */
@@ -696,7 +696,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Defines the horizontal alignment of the thumbnails menu of the `ui5-media-gallery` component.
    */
@@ -712,7 +712,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Types for the vertical alignment of the thumbnails menu of the `ui5-media-gallery` component.
    */
@@ -728,7 +728,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Available Page Background Design.
    */
@@ -748,7 +748,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * SideContent FallDown options.
    */
@@ -772,7 +772,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Side Content position options.
    */
@@ -790,7 +790,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.99.0) - This API is experimental and might change significantly.
    *
    * Side Content visibility options.
    */
@@ -818,7 +818,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Available Timeline layout orientation
    */
@@ -834,7 +834,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Different types of UploadState.
    */
@@ -858,7 +858,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.115.0
-   * Experimental (since 1.115.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.115.0) - This API is experimental and might change significantly.
    *
    * Different types of Bar.
    */
@@ -874,7 +874,7 @@ declare module "sap/ui/webc/fiori/library" {
   }
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This API is experimental and might change significantly.
+   * @experimental (since 1.92.0) - This API is experimental and might change significantly.
    *
    * Enumeration for different content layouts of the `ui5-wizard`.
    */
@@ -911,7 +911,7 @@ declare module "sap/ui/webc/fiori/Bar" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The Bar is a container which is primarily used to hold titles, buttons and input elements and
    * its design and functionality is the basis for page headers and footers. The component consists of three
@@ -1333,7 +1333,7 @@ declare module "sap/ui/webc/fiori/BarcodeScannerDialog" {
 
   /**
    * @since 1.95.0
-   * Experimental (since 1.95.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.95.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -1543,7 +1543,7 @@ declare module "sap/ui/webc/fiori/BarcodeScannerDialog" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:scanError scanError} to attached listeners.
      *
@@ -1556,7 +1556,7 @@ declare module "sap/ui/webc/fiori/BarcodeScannerDialog" {
       mParameters?: BarcodeScannerDialog$ScanErrorEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:scanSuccess scanSuccess} to attached listeners.
      *
@@ -1593,7 +1593,10 @@ declare module "sap/ui/webc/fiori/BarcodeScannerDialog" {
     message?: string;
   }
 
-  export type BarcodeScannerDialog$ScanErrorEvent = Event<BarcodeScannerDialog$ScanErrorEventParameters>;
+  export type BarcodeScannerDialog$ScanErrorEvent = Event<
+    BarcodeScannerDialog$ScanErrorEventParameters,
+    BarcodeScannerDialog
+  >;
 
   export interface BarcodeScannerDialog$ScanSuccessEventParameters {
     /**
@@ -1607,7 +1610,10 @@ declare module "sap/ui/webc/fiori/BarcodeScannerDialog" {
     rawBytes?: object;
   }
 
-  export type BarcodeScannerDialog$ScanSuccessEvent = Event<BarcodeScannerDialog$ScanSuccessEventParameters>;
+  export type BarcodeScannerDialog$ScanSuccessEvent = Event<
+    BarcodeScannerDialog$ScanSuccessEventParameters,
+    BarcodeScannerDialog
+  >;
 }
 
 declare module "sap/ui/webc/fiori/DynamicSideContent" {
@@ -1635,7 +1641,7 @@ declare module "sap/ui/webc/fiori/DynamicSideContent" {
 
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.99.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -1853,7 +1859,7 @@ declare module "sap/ui/webc/fiori/DynamicSideContent" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:layoutChange layoutChange} to attached listeners.
      *
@@ -2327,7 +2333,10 @@ declare module "sap/ui/webc/fiori/DynamicSideContent" {
     sideContentVisible?: boolean;
   }
 
-  export type DynamicSideContent$LayoutChangeEvent = Event<DynamicSideContent$LayoutChangeEventParameters>;
+  export type DynamicSideContent$LayoutChangeEvent = Event<
+    DynamicSideContent$LayoutChangeEventParameters,
+    DynamicSideContent
+  >;
 }
 
 declare module "sap/ui/webc/fiori/FilterItem" {
@@ -2347,7 +2356,7 @@ declare module "sap/ui/webc/fiori/FilterItem" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.97.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -2578,7 +2587,7 @@ declare module "sap/ui/webc/fiori/FilterItemOption" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.97.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -2737,7 +2746,7 @@ declare module "sap/ui/webc/fiori/FlexibleColumnLayout" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -2907,7 +2916,7 @@ declare module "sap/ui/webc/fiori/FlexibleColumnLayout" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:layoutChange layoutChange} to attached listeners.
      *
@@ -3344,7 +3353,10 @@ declare module "sap/ui/webc/fiori/FlexibleColumnLayout" {
     resize?: boolean;
   }
 
-  export type FlexibleColumnLayout$LayoutChangeEvent = Event<FlexibleColumnLayout$LayoutChangeEventParameters>;
+  export type FlexibleColumnLayout$LayoutChangeEvent = Event<
+    FlexibleColumnLayout$LayoutChangeEventParameters,
+    FlexibleColumnLayout
+  >;
 }
 
 declare module "sap/ui/webc/fiori/IllustratedMessage" {
@@ -3373,7 +3385,7 @@ declare module "sap/ui/webc/fiori/IllustratedMessage" {
 
   /**
    * @since 1.95.0
-   * Experimental (since 1.95.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.95.0) - This control is experimental and its API might change significantly.
    *
    * Overview: An IllustratedMessage is a recommended combination of a solution-oriented message, an engaging
    * illustration, and conversational tone to better communicate an empty or a success state than just show
@@ -3841,7 +3853,7 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
 
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.99.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -4139,7 +4151,7 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:displayAreaClick displayAreaClick} to attached listeners.
      *
@@ -4152,7 +4164,7 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:overflowClick overflowClick} to attached listeners.
      *
@@ -4165,7 +4177,7 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:selectionChange selectionChange} to attached listeners.
      *
@@ -4506,11 +4518,17 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
 
   export interface MediaGallery$DisplayAreaClickEventParameters {}
 
-  export type MediaGallery$DisplayAreaClickEvent = Event<MediaGallery$DisplayAreaClickEventParameters>;
+  export type MediaGallery$DisplayAreaClickEvent = Event<
+    MediaGallery$DisplayAreaClickEventParameters,
+    MediaGallery
+  >;
 
   export interface MediaGallery$OverflowClickEventParameters {}
 
-  export type MediaGallery$OverflowClickEvent = Event<MediaGallery$OverflowClickEventParameters>;
+  export type MediaGallery$OverflowClickEvent = Event<
+    MediaGallery$OverflowClickEventParameters,
+    MediaGallery
+  >;
 
   export interface MediaGallery$SelectionChangeEventParameters {
     /**
@@ -4519,7 +4537,10 @@ declare module "sap/ui/webc/fiori/MediaGallery" {
     item?: HTMLElement;
   }
 
-  export type MediaGallery$SelectionChangeEvent = Event<MediaGallery$SelectionChangeEventParameters>;
+  export type MediaGallery$SelectionChangeEvent = Event<
+    MediaGallery$SelectionChangeEventParameters,
+    MediaGallery
+  >;
 }
 
 declare module "sap/ui/webc/fiori/MediaGalleryItem" {
@@ -4541,7 +4562,7 @@ declare module "sap/ui/webc/fiori/MediaGalleryItem" {
 
   /**
    * @since 1.99.0
-   * Experimental (since 1.99.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.99.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The `sap.ui.webc.fiori.MediaGalleryItem` web component represents the items displayed in the
    * `sap.ui.webc.fiori.MediaGallery` web component.
@@ -4815,7 +4836,7 @@ declare module "sap/ui/webc/fiori/NotificationAction" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * The `sap.ui.webc.fiori.NotificationAction` represents an abstract action, used in the `sap.ui.webc.fiori.NotificationListItem`
    * and the `sap.ui.webc.fiori.NotificationListGroupItem` items.
@@ -4949,7 +4970,7 @@ declare module "sap/ui/webc/fiori/NotificationAction" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:click click} to attached listeners.
      *
@@ -5147,7 +5168,10 @@ declare module "sap/ui/webc/fiori/NotificationAction" {
     targetRef?: HTMLElement;
   }
 
-  export type NotificationAction$ClickEvent = Event<NotificationAction$ClickEventParameters>;
+  export type NotificationAction$ClickEvent = Event<
+    NotificationAction$ClickEventParameters,
+    NotificationAction
+  >;
 }
 
 declare module "sap/ui/webc/fiori/NotificationListGroupItem" {
@@ -5174,7 +5198,7 @@ declare module "sap/ui/webc/fiori/NotificationListGroupItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The `sap.ui.webc.fiori.NotificationListGroupItem` is a special type of list item, that unlike
    * others can group items within self, usually `sap.ui.webc.fiori.NotificationListItem` items.
@@ -5423,7 +5447,7 @@ declare module "sap/ui/webc/fiori/NotificationListGroupItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:close close} to attached listeners.
      *
@@ -5436,7 +5460,7 @@ declare module "sap/ui/webc/fiori/NotificationListGroupItem" {
       mParameters?: NotificationListGroupItem$CloseEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:toggle toggle} to attached listeners.
      *
@@ -5879,11 +5903,17 @@ declare module "sap/ui/webc/fiori/NotificationListGroupItem" {
     item?: HTMLElement;
   }
 
-  export type NotificationListGroupItem$CloseEvent = Event<NotificationListGroupItem$CloseEventParameters>;
+  export type NotificationListGroupItem$CloseEvent = Event<
+    NotificationListGroupItem$CloseEventParameters,
+    NotificationListGroupItem
+  >;
 
   export interface NotificationListGroupItem$ToggleEventParameters {}
 
-  export type NotificationListGroupItem$ToggleEvent = Event<NotificationListGroupItem$ToggleEventParameters>;
+  export type NotificationListGroupItem$ToggleEvent = Event<
+    NotificationListGroupItem$ToggleEventParameters,
+    NotificationListGroupItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/NotificationListItem" {
@@ -5917,7 +5947,7 @@ declare module "sap/ui/webc/fiori/NotificationListItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The `sap.ui.webc.fiori.NotificationListItem` is a type of list item, meant to display notifications.
    *
@@ -6112,7 +6142,7 @@ declare module "sap/ui/webc/fiori/NotificationListItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:close close} to attached listeners.
      *
@@ -6594,7 +6624,10 @@ declare module "sap/ui/webc/fiori/NotificationListItem" {
     item?: HTMLElement;
   }
 
-  export type NotificationListItem$CloseEvent = Event<NotificationListItem$CloseEventParameters>;
+  export type NotificationListItem$CloseEvent = Event<
+    NotificationListItem$CloseEventParameters,
+    NotificationListItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/Page" {
@@ -6618,7 +6651,7 @@ declare module "sap/ui/webc/fiori/Page" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -7071,7 +7104,7 @@ declare module "sap/ui/webc/fiori/ProductSwitch" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -7251,7 +7284,7 @@ declare module "sap/ui/webc/fiori/ProductSwitchItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The `sap.ui.webc.fiori.ProductSwitchItem` web component represents the items displayed in the
    * `sap.ui.webc.fiori.ProductSwitch` web component.
@@ -7399,7 +7432,7 @@ declare module "sap/ui/webc/fiori/ProductSwitchItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:click click} to attached listeners.
      *
@@ -7624,7 +7657,10 @@ declare module "sap/ui/webc/fiori/ProductSwitchItem" {
 
   export interface ProductSwitchItem$ClickEventParameters {}
 
-  export type ProductSwitchItem$ClickEvent = Event<ProductSwitchItem$ClickEventParameters>;
+  export type ProductSwitchItem$ClickEvent = Event<
+    ProductSwitchItem$ClickEventParameters,
+    ProductSwitchItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/ShellBar" {
@@ -7653,7 +7689,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -8189,7 +8225,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:coPilotClick coPilotClick} to attached listeners.
      *
@@ -8202,7 +8238,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       mParameters?: ShellBar$CoPilotClickEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:logoClick logoClick} to attached listeners.
      *
@@ -8215,7 +8251,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       mParameters?: ShellBar$LogoClickEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:menuItemClick menuItemClick} to attached listeners.
      *
@@ -8228,7 +8264,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       mParameters?: ShellBar$MenuItemClickEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:notificationsClick notificationsClick} to attached listeners.
      *
@@ -8244,7 +8280,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       mParameters?: ShellBar$NotificationsClickEventParameters
     ): boolean;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:productSwitchClick productSwitchClick} to attached listeners.
      *
@@ -8260,7 +8296,7 @@ declare module "sap/ui/webc/fiori/ShellBar" {
       mParameters?: ShellBar$ProductSwitchClickEventParameters
     ): boolean;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:profileClick profileClick} to attached listeners.
      *
@@ -8977,7 +9013,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBar$CoPilotClickEvent = Event<ShellBar$CoPilotClickEventParameters>;
+  export type ShellBar$CoPilotClickEvent = Event<
+    ShellBar$CoPilotClickEventParameters,
+    ShellBar
+  >;
 
   export interface ShellBar$LogoClickEventParameters {
     /**
@@ -8986,7 +9025,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBar$LogoClickEvent = Event<ShellBar$LogoClickEventParameters>;
+  export type ShellBar$LogoClickEvent = Event<
+    ShellBar$LogoClickEventParameters,
+    ShellBar
+  >;
 
   export interface ShellBar$MenuItemClickEventParameters {
     /**
@@ -8995,7 +9037,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     item?: HTMLElement;
   }
 
-  export type ShellBar$MenuItemClickEvent = Event<ShellBar$MenuItemClickEventParameters>;
+  export type ShellBar$MenuItemClickEvent = Event<
+    ShellBar$MenuItemClickEventParameters,
+    ShellBar
+  >;
 
   export interface ShellBar$NotificationsClickEventParameters {
     /**
@@ -9004,7 +9049,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBar$NotificationsClickEvent = Event<ShellBar$NotificationsClickEventParameters>;
+  export type ShellBar$NotificationsClickEvent = Event<
+    ShellBar$NotificationsClickEventParameters,
+    ShellBar
+  >;
 
   export interface ShellBar$ProductSwitchClickEventParameters {
     /**
@@ -9013,7 +9061,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBar$ProductSwitchClickEvent = Event<ShellBar$ProductSwitchClickEventParameters>;
+  export type ShellBar$ProductSwitchClickEvent = Event<
+    ShellBar$ProductSwitchClickEventParameters,
+    ShellBar
+  >;
 
   export interface ShellBar$ProfileClickEventParameters {
     /**
@@ -9022,7 +9073,10 @@ declare module "sap/ui/webc/fiori/ShellBar" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBar$ProfileClickEvent = Event<ShellBar$ProfileClickEventParameters>;
+  export type ShellBar$ProfileClickEvent = Event<
+    ShellBar$ProfileClickEventParameters,
+    ShellBar
+  >;
 }
 
 declare module "sap/ui/webc/fiori/ShellBarItem" {
@@ -9041,7 +9095,7 @@ declare module "sap/ui/webc/fiori/ShellBarItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    */
   export default class ShellBarItem
     extends WebComponent
@@ -9170,7 +9224,7 @@ declare module "sap/ui/webc/fiori/ShellBarItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:click click} to attached listeners.
      *
@@ -9297,7 +9351,10 @@ declare module "sap/ui/webc/fiori/ShellBarItem" {
     targetRef?: HTMLElement;
   }
 
-  export type ShellBarItem$ClickEvent = Event<ShellBarItem$ClickEventParameters>;
+  export type ShellBarItem$ClickEvent = Event<
+    ShellBarItem$ClickEventParameters,
+    ShellBarItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/SideNavigation" {
@@ -9324,7 +9381,7 @@ declare module "sap/ui/webc/fiori/SideNavigation" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -9523,7 +9580,7 @@ declare module "sap/ui/webc/fiori/SideNavigation" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:selectionChange selectionChange} to attached listeners.
      *
@@ -9793,7 +9850,10 @@ declare module "sap/ui/webc/fiori/SideNavigation" {
     item?: ISideNavigationItem | ISideNavigationSubItem;
   }
 
-  export type SideNavigation$SelectionChangeEvent = Event<SideNavigation$SelectionChangeEventParameters>;
+  export type SideNavigation$SelectionChangeEvent = Event<
+    SideNavigation$SelectionChangeEventParameters,
+    SideNavigation
+  >;
 }
 
 declare module "sap/ui/webc/fiori/SideNavigationItem" {
@@ -9818,7 +9878,7 @@ declare module "sap/ui/webc/fiori/SideNavigationItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -9971,7 +10031,7 @@ declare module "sap/ui/webc/fiori/SideNavigationItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:click click} to attached listeners.
      *
@@ -10241,7 +10301,10 @@ declare module "sap/ui/webc/fiori/SideNavigationItem" {
 
   export interface SideNavigationItem$ClickEventParameters {}
 
-  export type SideNavigationItem$ClickEvent = Event<SideNavigationItem$ClickEventParameters>;
+  export type SideNavigationItem$ClickEvent = Event<
+    SideNavigationItem$ClickEventParameters,
+    SideNavigationItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/SideNavigationSubItem" {
@@ -10260,7 +10323,7 @@ declare module "sap/ui/webc/fiori/SideNavigationSubItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -10396,7 +10459,7 @@ declare module "sap/ui/webc/fiori/SideNavigationSubItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:click click} to attached listeners.
      *
@@ -10531,7 +10594,10 @@ declare module "sap/ui/webc/fiori/SideNavigationSubItem" {
 
   export interface SideNavigationSubItem$ClickEventParameters {}
 
-  export type SideNavigationSubItem$ClickEvent = Event<SideNavigationSubItem$ClickEventParameters>;
+  export type SideNavigationSubItem$ClickEvent = Event<
+    SideNavigationSubItem$ClickEventParameters,
+    SideNavigationSubItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/SortItem" {
@@ -10548,7 +10614,7 @@ declare module "sap/ui/webc/fiori/SortItem" {
 
   /**
    * @since 1.97.0
-   * Experimental (since 1.97.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.97.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -10704,7 +10770,7 @@ declare module "sap/ui/webc/fiori/Timeline" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -11019,7 +11085,7 @@ declare module "sap/ui/webc/fiori/TimelineItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -11173,7 +11239,7 @@ declare module "sap/ui/webc/fiori/TimelineItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:nameClick nameClick} to attached listeners.
      *
@@ -11432,7 +11498,10 @@ declare module "sap/ui/webc/fiori/TimelineItem" {
 
   export interface TimelineItem$NameClickEventParameters {}
 
-  export type TimelineItem$NameClickEvent = Event<TimelineItem$NameClickEventParameters>;
+  export type TimelineItem$NameClickEvent = Event<
+    TimelineItem$NameClickEventParameters,
+    TimelineItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/UploadCollection" {
@@ -11460,7 +11529,7 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: This component allows you to represent files before uploading them to a server, with the help
    * of `sap.ui.webc.fiori.UploadCollectionItem`. It also allows you to show already uploaded files.
@@ -11768,7 +11837,7 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:drop drop} to attached listeners.
      *
@@ -11781,7 +11850,7 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
       mParameters?: UploadCollection$DropEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:itemDelete itemDelete} to attached listeners.
      *
@@ -11794,7 +11863,7 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
       mParameters?: UploadCollection$ItemDeleteEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:selectionChange selectionChange} to attached listeners.
      *
@@ -12223,7 +12292,10 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
     dataTransfer?: DataTransfer;
   }
 
-  export type UploadCollection$DropEvent = Event<UploadCollection$DropEventParameters>;
+  export type UploadCollection$DropEvent = Event<
+    UploadCollection$DropEventParameters,
+    UploadCollection
+  >;
 
   export interface UploadCollection$ItemDeleteEventParameters {
     /**
@@ -12232,7 +12304,10 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
     item?: HTMLElement;
   }
 
-  export type UploadCollection$ItemDeleteEvent = Event<UploadCollection$ItemDeleteEventParameters>;
+  export type UploadCollection$ItemDeleteEvent = Event<
+    UploadCollection$ItemDeleteEventParameters,
+    UploadCollection
+  >;
 
   export interface UploadCollection$SelectionChangeEventParameters {
     /**
@@ -12241,7 +12316,10 @@ declare module "sap/ui/webc/fiori/UploadCollection" {
     selectedItems?: any[];
   }
 
-  export type UploadCollection$SelectionChangeEvent = Event<UploadCollection$SelectionChangeEventParameters>;
+  export type UploadCollection$SelectionChangeEvent = Event<
+    UploadCollection$SelectionChangeEventParameters,
+    UploadCollection
+  >;
 }
 
 declare module "sap/ui/webc/fiori/UploadCollectionItem" {
@@ -12268,7 +12346,7 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview: A component to be used within the `sap.ui.webc.fiori.UploadCollection`.
    */
@@ -12635,7 +12713,7 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:fileNameClick fileNameClick} to attached listeners.
      *
@@ -12648,7 +12726,7 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:rename rename} to attached listeners.
      *
@@ -12661,7 +12739,7 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:retry retry} to attached listeners.
      *
@@ -12674,7 +12752,7 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:terminate terminate} to attached listeners.
      *
@@ -13073,19 +13151,31 @@ declare module "sap/ui/webc/fiori/UploadCollectionItem" {
 
   export interface UploadCollectionItem$FileNameClickEventParameters {}
 
-  export type UploadCollectionItem$FileNameClickEvent = Event<UploadCollectionItem$FileNameClickEventParameters>;
+  export type UploadCollectionItem$FileNameClickEvent = Event<
+    UploadCollectionItem$FileNameClickEventParameters,
+    UploadCollectionItem
+  >;
 
   export interface UploadCollectionItem$RenameEventParameters {}
 
-  export type UploadCollectionItem$RenameEvent = Event<UploadCollectionItem$RenameEventParameters>;
+  export type UploadCollectionItem$RenameEvent = Event<
+    UploadCollectionItem$RenameEventParameters,
+    UploadCollectionItem
+  >;
 
   export interface UploadCollectionItem$RetryEventParameters {}
 
-  export type UploadCollectionItem$RetryEvent = Event<UploadCollectionItem$RetryEventParameters>;
+  export type UploadCollectionItem$RetryEvent = Event<
+    UploadCollectionItem$RetryEventParameters,
+    UploadCollectionItem
+  >;
 
   export interface UploadCollectionItem$TerminateEventParameters {}
 
-  export type UploadCollectionItem$TerminateEvent = Event<UploadCollectionItem$TerminateEventParameters>;
+  export type UploadCollectionItem$TerminateEvent = Event<
+    UploadCollectionItem$TerminateEventParameters,
+    UploadCollectionItem
+  >;
 }
 
 declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
@@ -13107,7 +13197,7 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
 
   /**
    * @since 1.95.0
-   * Experimental (since 1.95.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.95.0) - This control is experimental and its API might change significantly.
    *
    * Overview: The `sap.ui.webc.fiori.ViewSettingsDialog` component helps the user to sort data within a list
    * or a table. It consists of several lists like `Sort order` which is built-in and `Sort By` and `Filter
@@ -13411,7 +13501,7 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:beforeOpen beforeOpen} to attached listeners.
      *
@@ -13424,7 +13514,7 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
       mParameters?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:cancel cancel} to attached listeners.
      *
@@ -13437,7 +13527,7 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
       mParameters?: ViewSettingsDialog$CancelEventParameters
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:confirm confirm} to attached listeners.
      *
@@ -13635,7 +13725,10 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
 
   export interface ViewSettingsDialog$BeforeOpenEventParameters {}
 
-  export type ViewSettingsDialog$BeforeOpenEvent = Event<ViewSettingsDialog$BeforeOpenEventParameters>;
+  export type ViewSettingsDialog$BeforeOpenEvent = Event<
+    ViewSettingsDialog$BeforeOpenEventParameters,
+    ViewSettingsDialog
+  >;
 
   export interface ViewSettingsDialog$CancelEventParameters {
     /**
@@ -13664,7 +13757,10 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
     filters?: any[];
   }
 
-  export type ViewSettingsDialog$CancelEvent = Event<ViewSettingsDialog$CancelEventParameters>;
+  export type ViewSettingsDialog$CancelEvent = Event<
+    ViewSettingsDialog$CancelEventParameters,
+    ViewSettingsDialog
+  >;
 
   export interface ViewSettingsDialog$ConfirmEventParameters {
     /**
@@ -13693,7 +13789,10 @@ declare module "sap/ui/webc/fiori/ViewSettingsDialog" {
     filters?: any[];
   }
 
-  export type ViewSettingsDialog$ConfirmEvent = Event<ViewSettingsDialog$ConfirmEventParameters>;
+  export type ViewSettingsDialog$ConfirmEvent = Event<
+    ViewSettingsDialog$ConfirmEventParameters,
+    ViewSettingsDialog
+  >;
 }
 
 declare module "sap/ui/webc/fiori/Wizard" {
@@ -13717,7 +13816,7 @@ declare module "sap/ui/webc/fiori/Wizard" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *
@@ -13936,7 +14035,7 @@ declare module "sap/ui/webc/fiori/Wizard" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:stepChange stepChange} to attached listeners.
      *
@@ -14105,7 +14204,10 @@ declare module "sap/ui/webc/fiori/Wizard" {
     changeWithClick?: boolean;
   }
 
-  export type Wizard$StepChangeEvent = Event<Wizard$StepChangeEventParameters>;
+  export type Wizard$StepChangeEvent = Event<
+    Wizard$StepChangeEventParameters,
+    Wizard
+  >;
 }
 
 declare module "sap/ui/webc/fiori/WizardStep" {
@@ -14127,7 +14229,7 @@ declare module "sap/ui/webc/fiori/WizardStep" {
 
   /**
    * @since 1.92.0
-   * Experimental (since 1.92.0) - This control is experimental and its API might change significantly.
+   * @experimental (since 1.92.0) - This control is experimental and its API might change significantly.
    *
    * Overview:
    *

@@ -8,7 +8,7 @@
  * ```
  * @see [source](https://github.com/nodejs/node/blob/v16.9.0/lib/util.js)
  */
-declare module 'util' {
+declare module 'node:util' {
     import * as types from 'node:util/types';
     export interface InspectOptions {
         /**
@@ -317,7 +317,7 @@ declare module 'util' {
      * @return The representation of `object`.
      */
     export function inspect(object: any, showHidden?: boolean, depth?: number | null, color?: boolean): string;
-    export function inspect(object: any, options: InspectOptions): string;
+    export function inspect(object: any, options?: InspectOptions): string;
     export namespace inspect {
         let colors: NodeJS.Dict<[number, number]>;
         let styles: {
@@ -1094,6 +1094,33 @@ declare module 'util' {
          */
         encodeInto(src: string, dest: Uint8Array): EncodeIntoResult;
     }
+
+    import { TextDecoder as _TextDecoder, TextEncoder as _TextEncoder } from 'util';
+    global {
+        /**
+         * `TextDecoder` class is a global reference for `require('util').TextDecoder`
+         * https://nodejs.org/api/globals.html#textdecoder
+         * @since v11.0.0
+         */
+         var TextDecoder: typeof globalThis extends {
+            onmessage: any;
+            TextDecoder: infer TextDecoder;
+        }
+            ? TextDecoder
+            : typeof _TextDecoder;
+
+        /**
+         * `TextEncoder` class is a global reference for `require('util').TextEncoder`
+         * https://nodejs.org/api/globals.html#textencoder
+         * @since v11.0.0
+         */
+         var TextEncoder: typeof globalThis extends {
+            onmessage: any;
+            TextEncoder: infer TextEncoder;
+        }
+            ? TextEncoder
+            : typeof _TextEncoder;
+    }
 }
 declare module 'util/types' {
     export * from 'util/types';
@@ -1586,8 +1613,8 @@ declare module 'util/types' {
      */
     function isCryptoKey(object: unknown): object is webcrypto.CryptoKey;
 }
-declare module 'node:util' {
-    export * from 'util';
+declare module 'util' {
+    export * from 'node:util';
 }
 declare module 'node:util/types' {
     export * from 'util/types';

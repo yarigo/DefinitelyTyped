@@ -688,7 +688,8 @@ const awsServerless: Aws.Serverless = {
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        functionResponseType: "ReportBatchItemFailures"
                     }
                 }, {
                     msk: {
@@ -801,6 +802,7 @@ const awsServerless: Aws.Serverless = {
                         batchSize: 100,
                         maximumBatchingWindow: 30,
                         enabled: true,
+                        consumerGroupId: 'MyConsumerGroupId',
                     }
                 }
             ],

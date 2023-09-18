@@ -1,4 +1,4 @@
-// For Library Version: 1.116.0
+// For Library Version: 1.118.0
 
 declare module "sap/tnt/library" {
   /**
@@ -596,7 +596,7 @@ declare module "sap/tnt/NavigationList" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:itemSelect itemSelect} to attached listeners.
      *
@@ -851,7 +851,10 @@ declare module "sap/tnt/NavigationList" {
     item?: Item;
   }
 
-  export type NavigationList$ItemSelectEvent = Event<NavigationList$ItemSelectEventParameters>;
+  export type NavigationList$ItemSelectEvent = Event<
+    NavigationList$ItemSelectEventParameters,
+    NavigationList
+  >;
 }
 
 declare module "sap/tnt/NavigationListItem" {
@@ -1015,7 +1018,7 @@ declare module "sap/tnt/NavigationListItem" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:select select} to attached listeners.
      *
@@ -1038,7 +1041,7 @@ declare module "sap/tnt/NavigationListItem" {
      */
     getExpanded(): boolean;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Returns the DOM Element that should get the focus.
      *
@@ -1082,7 +1085,7 @@ declare module "sap/tnt/NavigationListItem" {
     getItems(): NavigationListItem[];
     /**
      * @since 1.116
-     * Experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
+     * @experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
      * may be done before its official public release.
      *
      * Gets current value of property {@link #getSelectable selectable}.
@@ -1235,7 +1238,7 @@ declare module "sap/tnt/NavigationListItem" {
     ): this;
     /**
      * @since 1.116
-     * Experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
+     * @experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
      * may be done before its official public release.
      *
      * Sets a new value for property {@link #getSelectable selectable}.
@@ -1319,7 +1322,7 @@ declare module "sap/tnt/NavigationListItem" {
 
     /**
      * @since 1.116
-     * Experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
+     * @experimental (since 1.116) - Disclaimer: this property is in a beta state - incompatible API changes
      * may be done before its official public release.
      *
      * Specifies if the item can be selected.
@@ -1363,7 +1366,10 @@ declare module "sap/tnt/NavigationListItem" {
     item?: Item;
   }
 
-  export type NavigationListItem$SelectEvent = Event<NavigationListItem$SelectEventParameters>;
+  export type NavigationListItem$SelectEvent = Event<
+    NavigationListItem$SelectEventParameters,
+    NavigationListItem
+  >;
 }
 
 declare module "sap/tnt/SideNavigation" {
@@ -1551,7 +1557,7 @@ declare module "sap/tnt/SideNavigation" {
       oListener?: object
     ): this;
     /**
-     * Protected:  Do not call from applications (only from related classes in the framework)
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
      *
      * Fires event {@link #event:itemSelect itemSelect} to attached listeners.
      *
@@ -1764,7 +1770,10 @@ declare module "sap/tnt/SideNavigation" {
     item?: Item;
   }
 
-  export type SideNavigation$ItemSelectEvent = Event<SideNavigation$ItemSelectEventParameters>;
+  export type SideNavigation$ItemSelectEvent = Event<
+    SideNavigation$ItemSelectEventParameters,
+    SideNavigation
+  >;
 }
 
 declare module "sap/tnt/ToolHeader" {

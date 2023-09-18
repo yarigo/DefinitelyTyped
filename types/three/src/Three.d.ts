@@ -41,6 +41,7 @@ export * from './cameras/Camera.js';
 /**
  * Core
  */
+export * from './core/RenderTarget.js';
 export * from './core/Uniform.js';
 export * from './core/UniformsGroup.js';
 export * from './core/InstancedBufferGeometry.js';
@@ -233,3 +234,7 @@ export * from './textures/DepthTexture.js';
 export * from './textures/FramebufferTexture.js';
 export * from './textures/Source.js';
 export * from './textures/Texture.js';
+/**
+ * Utils
+ */
+export { createCanvasElement } from './utils.js';
