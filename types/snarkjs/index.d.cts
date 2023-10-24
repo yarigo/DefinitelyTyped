@@ -1,9 +1,13 @@
 export as namespace snarkjs;
 
-// Some types borrowed from https://github.com/erhant/circomkit.
+// Some types have been borrowed from https://github.com/erhant/circomkit.
+
+export type NumericString = `${number}` | string;
+
+export type ZKArtifact = string | Uint8Array;
 
 // A signal value is a number, or an array of numbers (recursively).
-export type SignalValueType = `${number}` | number | bigint | SignalValueType[];
+export type SignalValueType = NumericString | number | bigint | SignalValueType[];
 
 // An object with string keys and array of numerical values.
 // Each key represents a signal name as it appears in the circuit.
@@ -25,61 +29,78 @@ export interface R1CSInfoType {
 }
 
 export interface Groth16Proof {
-    pi_a: string[];
-    pi_b: string[][];
-    pi_c: string[];
+    pi_a: NumericString[];
+    pi_b: NumericString[][];
+    pi_c: NumericString[];
     protocol: string;
     curve: string;
 }
 
 export interface FflonkProof {
     polynomials: {
-        C1: string[];
-        C2: string[];
-        W1: string[];
-        W2: string[];
+        C1: NumericString[];
+        C2: NumericString[];
+        W1: NumericString[];
+        W2: NumericString[];
     };
-    evaluations: object;
+    evaluations: {
+        ql: NumericString;
+        qr: NumericString;
+        qm: NumericString;
+        qo: NumericString;
+        qc: NumericString;
+        s1: NumericString;
+        s2: NumericString;
+        s3: NumericString;
+        a: NumericString;
+        b: NumericString;
+        c: NumericString;
+        z: NumericString;
+        zw: NumericString;
+        t1w: NumericString;
+        t2w: NumericString;
+        inv: NumericString;
+    };
     protocol: string;
     curve: string;
 }
 
 export interface PlonkProof {
-    A: string[];
-    B: string[];
-    C: string[];
-    Z: string[];
-    T1: string[];
-    T2: string[];
-    T3: string[];
-    Wxi: string[];
-    Wxiw: string[];
-    eval_a: string;
-    eval_b: string;
-    eval_c: string;
-    eval_s1: string;
-    eval_s2: string;
-    eval_zw: string;
+    A: NumericString[];
+    B: NumericString[];
+    C: NumericString[];
+    Z: NumericString[];
+    T1: NumericString[];
+    T2: NumericString[];
+    T3: NumericString[];
+    Wxi: NumericString[];
+    Wxiw: NumericString[];
+    eval_a: NumericString;
+    eval_b: NumericString;
+    eval_c: NumericString;
+    eval_s1: NumericString;
+    eval_s2: NumericString;
+    eval_zw: NumericString;
     protocol: string;
     curve: string;
 }
 
-export type PublicSignals = string[];
+export type PublicSignals = NumericString[];
 
 export namespace groth16 {
     function exportSolidityCallData(_proof: Groth16Proof, _pub: PublicSignals): Promise<string>;
     function fullProve(
         _input: CircuitSignals,
-        wasmFile: string,
-        zkeyFileName: string,
+        wasmFile: ZKArtifact,
+        zkeyFileName: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: Groth16Proof;
         publicSignals: PublicSignals;
     }>;
     function prove(
-        zkeyFileName: string,
-        witnessFileName: any,
+        zkeyFileName: ZKArtifact,
+        witnessFileName: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: Groth16Proof;
@@ -98,22 +119,22 @@ export namespace fflonk {
     function exportSolidityVerifier(vk: any, templates: any, logger?: any): Promise<any>;
     function fullProve(
         _input: CircuitSignals,
-        wasmFilename: string,
-        zkeyFilename: string,
+        wasmFilename: ZKArtifact,
+        zkeyFilename: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: FflonkProof;
         publicSignals: PublicSignals;
     }>;
     function prove(
-        zkeyFileName: string,
-        witnessFileName: any,
+        zkeyFileName: ZKArtifact,
+        witnessFileName: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: FflonkProof;
         publicSignals: PublicSignals;
     }>;
-    function setup(r1csFilename: string, ptauFilename: string, zkeyFilename: string, logger?: any): Promise<0>;
+    function setup(r1csFilename: string, ptauFilename: string, zkeyFilename: ZKArtifact, logger?: any): Promise<0>;
     function verify(
         _vk_verifier: any,
         _publicSignals: PublicSignals,
@@ -126,22 +147,22 @@ export namespace plonk {
     function exportSolidityCallData(_proof: PlonkProof, _pub: PublicSignals): Promise<string>;
     function fullProve(
         _input: CircuitSignals,
-        wasmFile: string,
-        zkeyFileName: string,
+        wasmFile: ZKArtifact,
+        zkeyFileName: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: PlonkProof;
         publicSignals: PublicSignals;
     }>;
     function prove(
-        zkeyFileName: string,
-        witnessFileName: any,
+        zkeyFileName: ZKArtifact,
+        witnessFileName: ZKArtifact,
         logger?: any,
     ): Promise<{
         proof: PlonkProof;
         publicSignals: PublicSignals;
     }>;
-    function setup(r1csName: string, ptauName: string, zkeyName: string, logger?: any): Promise<void>;
+    function setup(r1csName: string, ptauName: string, zkeyName: ZKArtifact, logger?: any): Promise<void>;
     function verify(
         _vk_verifier: any,
         _publicSignals: PublicSignals,
@@ -228,7 +249,7 @@ export namespace zKey {
     ): Promise<any>;
     function contribute(zkeyNameOld: any, zkeyNameNew: any, name: string, entropy: any, logger?: any): Promise<any>;
     function exportBellman(zkeyName: any, mpcparamsName: any, logger?: any): Promise<void>;
-    function exportJson(zkeyFileName: string): Promise<object>;
+    function exportJson(zkeyFileName: any): Promise<object>;
     function exportSolidityVerifier(zKeyName: any, templates: any, logger?: any): Promise<any>;
     function exportVerificationKey(zkeyName: any, logger?: any): Promise<any>;
     function importBellman(

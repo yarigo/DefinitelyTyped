@@ -1,8 +1,3 @@
-// Type definitions for ads-client 1.14
-// Project: https://github.com/jisotalo/ads-client
-// Definitions by: Christian Rishøj <https://github.com/crishoj>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
 /// <reference types="node" />
 
 import EventEmitter = require("events");
@@ -35,7 +30,7 @@ export interface Settings {
 export interface Metadata {
     deviceInfo: object;
     systemManagerState: object;
-    plcRuntimeState: object;
+    plcRuntimeState: PLCRuntimeState;
     uploadInfo: object;
     symbolVersion: number;
     allSymbolsCached: boolean;
@@ -43,6 +38,35 @@ export interface Metadata {
     allDataTypesCached: boolean;
     dataTypes: object;
     routerState: object;
+}
+
+export type ADSStateStr =
+    | "Invalid"
+    | "Idle"
+    | "Reset"
+    | "Initialize"
+    | "Start"
+    | "Run"
+    | "Stop"
+    | "SaveConfig"
+    | "LoadConfig"
+    | "PowerFailure"
+    | "PowerGood"
+    | "Error"
+    | "Shutdown"
+    | "Susped" // Upstream typo
+    | "Resume"
+    | "Config"
+    | "Reconfig"
+    | "Stopping"
+    | "Incompatible"
+    | "Exception"
+    | "UNKNOWN";
+
+export interface PLCRuntimeState {
+    adsState: number;
+    adsStateStr: ADSStateStr;
+    deviceState: number;
 }
 
 export interface Connection {
@@ -54,7 +78,12 @@ export interface Connection {
     targetAdsPort: number;
 }
 
-export type PLCValue = boolean | number | string | [] | object | Date
+export interface PLCEnum {
+    name: string;
+    value: number;
+}
+
+export type PLCValue = boolean | number | string | [] | object | PLCEnum | Date;
 
 export interface SymbolData {
     symbol: object;
@@ -70,7 +99,7 @@ export interface Datatype {
     offset: number;
     adsDataType: number;
     adsDataTypeStr: string;
-    flags: number[],
+    flags: number[];
     flagsStr: string[];
     nameLength: string;
     typeLength: number;
@@ -156,7 +185,7 @@ export interface CreateVariableHandleResult {
     type: string;
 }
 
-export type VariableHandleParam = number | CreateVariableHandleResult | CreateVariableHandleMultiResult
+export type VariableHandleParam = number | CreateVariableHandleResult | CreateVariableHandleMultiResult;
 
 export interface CreateVariableHandleMultiResult {
     success: boolean;
@@ -191,9 +220,9 @@ export interface SymbolInfo {
     name: string;
     type: string;
     comment: string;
-    arrayData: Array<{startIndex: number, length: number}>;
+    arrayData: Array<{ startIndex: number; length: number }>;
     typeGuid: string;
-    attributes: Array<{name: string, value: string}>;
+    attributes: Array<{ name: string; value: string }>;
     attributeCount: number;
 }
 
@@ -218,7 +247,7 @@ export class Client extends EventEmitter {
 
     readSystemManagerState(): Promise<object>;
 
-    readPlcRuntimeState(adsPort?: number): Promise<object>;
+    readPlcRuntimeState(adsPort?: number): Promise<PLCRuntimeState>;
 
     readSymbolVersion(): Promise<number>;
 
@@ -236,9 +265,23 @@ export class Client extends EventEmitter {
 
     writeSymbol(variableName: string, value: PLCValue, autoFill?: boolean): Promise<SymbolData>;
 
-    subscribe(variableName: string, callback: (data: SubscriptionCallbackData, sub: Subscription) => any, cycleTime?: number, onChange?: boolean, initialDelay?: number): Promise<Subscription>;
+    subscribe(
+        variableName: string,
+        callback: (data: SubscriptionCallbackData, sub: Subscription) => any,
+        cycleTime?: number,
+        onChange?: boolean,
+        initialDelay?: number,
+    ): Promise<Subscription>;
 
-    subscribeRaw(indexGroup: number, indexOffset: number, size: number, callback: (data: SubscriptionCallbackData, sub: object) => any, cycleTime?: number, onChange?: boolean, initialDelay?: number): Promise<object>;
+    subscribeRaw(
+        indexGroup: number,
+        indexOffset: number,
+        size: number,
+        callback: (data: SubscriptionCallbackData, sub: object) => any,
+        cycleTime?: number,
+        onChange?: boolean,
+        initialDelay?: number,
+    ): Promise<object>;
 
     unsubscribe(notificationHandle: number): Promise<object>;
 
@@ -254,7 +297,13 @@ export class Client extends EventEmitter {
 
     readRawMulti(targetArray: ReadRawMultiParam[], targetAdsPort?: number): Promise<ReadRawMultiResult[]>;
 
-    readWriteRaw(indexGroup: number, indexOffset: number, readLength: number, dataBuffer: Buffer, targetAdsPort?: number): Promise<Buffer>;
+    readWriteRaw(
+        indexGroup: number,
+        indexOffset: number,
+        readLength: number,
+        dataBuffer: Buffer,
+        targetAdsPort?: number,
+    ): Promise<Buffer>;
 
     writeRawByHandle(handle: VariableHandleParam, dataBuffer: Buffer): Promise<object>;
 
@@ -270,7 +319,9 @@ export class Client extends EventEmitter {
 
     deleteVariableHandle(handle: VariableHandleParam): Promise<object>;
 
-    deleteVariableHandleMulti(handleArray: CreateVariableHandleMultiResult[]): Promise<DeleteVariableHandleMultiResult[]>;
+    deleteVariableHandleMulti(
+        handleArray: CreateVariableHandleMultiResult[],
+    ): Promise<DeleteVariableHandleMultiResult[]>;
 
     convertFromRaw(rawData: Buffer, dataTypeName: string): Promise<object>;
 
@@ -294,7 +345,12 @@ export class Client extends EventEmitter {
 
     invokeRpcMethod(variableName: string, methodName: string, parameters?: object): Promise<RpcMethodResult>;
 
-    sendAdsCommand(adsCommand: number, adsData: Buffer, targetAdsPort?: number, targetAmsNetId?: string): Promise<object>;
+    sendAdsCommand(
+        adsCommand: number,
+        adsData: Buffer,
+        targetAdsPort?: number,
+        targetAmsNetId?: string,
+    ): Promise<object>;
 
     byteArrayToAmsNetIdStr(byteArray: Buffer | any[]): string;
 
