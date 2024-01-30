@@ -1367,6 +1367,10 @@ export interface FileEntry {
     attrs: Attributes;
 }
 
+export interface FileEntryWithStats extends Omit<FileEntry, "attrs"> {
+    attrs: Stats;
+}
+
 export interface SFTPWrapper extends EventEmitter {
     /**
      * (Client-only)
@@ -1548,7 +1552,7 @@ export interface SFTPWrapper extends EventEmitter {
      * (Client-only)
      * Retrieves a directory listing.
      */
-    readdir(location: string | Buffer, callback: (err: Error | undefined, list: FileEntry[]) => void): void;
+    readdir(location: string | Buffer, callback: (err: Error | undefined, list: FileEntryWithStats[]) => void): void;
 
     /**
      * (Client-only)
