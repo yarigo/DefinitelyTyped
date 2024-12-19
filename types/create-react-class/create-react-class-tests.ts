@@ -1,5 +1,3 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 import * as DOM from "react-dom-factories";
 import createReactClass = require("create-react-class");
 
@@ -22,7 +20,6 @@ const container: Element = document.createElement("div");
 // --------------------------------------------------------------------------
 
 const ClassicComponent: createReactClass.ClassicComponentClass<Props> = createReactClass<Props, State>({
-    childContextTypes: {},
     componentDidCatch(err, errorInfo) {
         const msg: string = err.message;
         const name: string = err.name;
@@ -43,7 +40,6 @@ const ClassicComponent: createReactClass.ClassicComponentClass<Props> = createRe
         const foo: string = props.foo;
         const bar: number = state.bar;
     },
-    contextTypes: {},
     displayName: "Test",
     getDefaultProps() {
         return { foo: "f" };
@@ -52,6 +48,7 @@ const ClassicComponent: createReactClass.ClassicComponentClass<Props> = createRe
         return { bar: 1 };
     },
     mixins: [],
+    // deprecated. Kept for backwards compatibility.
     propTypes: {},
     shouldComponentUpdate(this: createReactClass.ClassicComponent<Props, State>, nextProps, nextState) {
         const newFoo: string = nextProps.foo;
@@ -68,7 +65,9 @@ const ClassicComponent: createReactClass.ClassicComponentClass<Props> = createRe
         return DOM.div(
             null,
             DOM.input({
-                ref: input => this._input = input,
+                ref: input => {
+                    this._input = input;
+                },
                 value: this.state.bar,
             }),
         );
@@ -95,7 +94,9 @@ const ClassicComponentNoState: createReactClass.ClassicComponentClass<{ text: st
 
 const displayName: string | undefined = ClassicComponent.displayName;
 const defaultProps: Props = ClassicComponent.getDefaultProps ? ClassicComponent.getDefaultProps() : {} as Props;
-const propTypes: React.ValidationMap<Props> | undefined = ClassicComponent.propTypes;
+// deprecated. Kept for backwards compatibility.
+// $ExpectType any
+const propTypes = ClassicComponent.propTypes;
 
 //
 // Component API

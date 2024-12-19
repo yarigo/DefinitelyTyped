@@ -1,4 +1,4 @@
-import { Component, ComponentClass, ComponentLifecycle, ReactNode, ValidationMap } from "react";
+import { Component, ComponentClass, ComponentLifecycle, ReactNode } from "react";
 
 declare namespace createReactClass {
     interface Mixin<P, S> extends ComponentLifecycle<P, S> {
@@ -8,9 +8,11 @@ declare namespace createReactClass {
         } | undefined;
 
         displayName?: string | undefined;
-        propTypes?: ValidationMap<any> | undefined;
-        contextTypes?: ValidationMap<any> | undefined;
-        childContextTypes?: ValidationMap<any> | undefined;
+        /**
+         * Ignored by React.
+         * @deprecated Only kept in types for backwards compatibility. Will be removed in a futre major release.
+         */
+        propTypes?: any;
 
         getDefaultProps?(): P;
         getInitialState?(): S;
